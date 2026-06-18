@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parth Bhanushali - Portfolio</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  
+  <!-- GSAP for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #F5C842;
+      --text-color: #0D0D0D;
+      --card-bg: #F0BE38;
+      
+      --font-hero: 'Bebas Neue', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-hindi: 'Noto Sans Devanagari', sans-serif;
+      
+      --pad-side: clamp(1.5rem, 5vw, 4rem);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 var(--pad-side);
+    }
+
+    /* Typography */
+    .hero-name {
+      font-family: var(--font-hero);
+      font-size: clamp(6rem, 15vw, 16rem);
+      line-height: 0.8;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .hero-name span {
+      display: inline-block;
+      overflow: hidden;
+    }
+    
+    .hero-name .char {
+      display: inline-block;
+      transform: translateY(100%);
+    }
+
+    .section-title-wrapper {
+      margin-bottom: 3rem;
+      overflow: hidden;
+    }
+
+    .section-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .title-en {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .title-hi {
+      font-family: var(--font-hindi);
+      font-weight: 700;
+    }
+
+    /* Floating CTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 4rem;
+      height: 4rem;
+      background-color: var(--text-color);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .floating-cta:hover {
+      transform: scale(1.1);
+    }
+    .floating-cta svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--bg-color);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-dark {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+      border: 2px solid var(--text-color);
+    }
+    .btn-dark:hover {
+      background-color: transparent;
+      color: var(--text-color);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--text-color);
+      border: 2px solid var(--text-color);
+    }
+    .btn-outline:hover {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .logo {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+      font-family: var(--font-hero);
+      font-size: 2rem;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      line-height: 1;
+    }
+    .hero-tagline {
+      max-width: 250px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: right;
+    }
+    .hero-content {
+      flex: 1;
+      display: flex;
+      gap: 2rem;
+      align-items: stretch;
+    }
+    .hero-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .hero-right {
+      flex: 1;
+      background-color: var(--text-color);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-weight: bold;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding-top: 2rem;
+    }
+
+    /* About Section */
+    .about {
+      padding: 8rem 0;
+    }
+    .about-text {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.3;
+      max-width: 900px;
+      margin-bottom: 3rem;
+    }
+    .about-ctas {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* Experience Section */
+    .experience {
+      padding: 6rem 0;
+    }
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid rgba(13, 13, 13, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .exp-logo {
+      font-family: var(--font-hero);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .exp-desc {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+    .exp-stack {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(13, 13, 13, 0.6);
+    }
+
+    /* Horizontal Scroll Sections */
+    .projects, .interests {
+      padding: 6rem 0;
+    }
+    .h-scroll-container {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      padding-bottom: 2rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none; /* Firefox */
+    }
+    .h-scroll-container::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+    .project-card {
+      min-width: 350px;
+      scroll-snap-align: start;
+    }
+    .project-img {
+      height: 450px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-weight: bold;
+    }
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-top: 1px solid rgba(13, 13, 13, 0.2);
+      padding-top: 1rem;
+    }
+    .project-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      max-width: 70%;
+    }
+    .project-tag {
+      font-size: 0.7rem;
+      border: 1px solid var(--text-color);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .project-desc {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: rgba(13, 13, 13, 0.8);
+    }
+
+    /* Interests */
+    .interest-sub {
+      margin-bottom: 4rem;
+    }
+    .music-card {
+      min-width: 250px;
+      height: 250px;
+      background-color: #1A1A1A;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.4);
+      scroll-snap-align: start;
+    }
+    
+    /* Q&A Section */
+    .qa {
+      padding: 8rem 0;
+      position: relative;
+    }
+    .qa-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .qa-title {
+      font-family: var(--font-hero);
+      font-size: clamp(8rem, 25vw, 30rem);
+      line-height: 0.8;
+      position: absolute;
+      right: -2rem;
+      top: 0;
+      z-index: 0;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .qa-list {
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+    .qa-item {
+      margin-bottom: 3rem;
+    }
+    .qa-q {
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .qa-a {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(13, 13, 13, 0.85);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 4rem 0;
+      border-top: 1px solid rgba(13, 13, 13, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .socials svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: var(--text-color);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 900px) {
+      .hero-content {
+        flex-direction: column;
+      }
+      .hero-right {
+        min-height: 400px;
+      }
+      .qa-container {
+        grid-template-columns: 1fr;
+      }
+      .qa-title {
+        top: -5rem;
+        right: 0;
+        opacity: 0.05;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="mailto:parth@example.com" class="floating-cta" aria-label="Contact Me">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container">
+      <div class="hero-top">
+        <div class="logo">PB</div>
+        <div class="hero-tagline">Building AI systems that ease, optimize, and delight.</div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-left">
+          <h1 class="hero-name">
+            <span class="line"><span class="char">P</span><span class="char">A</span><span class="char">R</span><span class="char">T</span><span class="char">H</span></span>
+            <span class="line"><span class="char">B</span><span class="char">H</span><span class="char">A</span><span class="char">N</span><span class="char">U</span><span class="char">S</span><span class="char">H</span><span class="char">A</span><span class="char">L</span><span class="char">I</span></span>
+          </h1>
+          <div class="hero-meta">
+            <span>MUMBAI, INDIA</span>
+            <span>SAKEC CE '26</span>
+            <span id="clock">12:00 AM IST</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          [ PORTRAIT IMAGE PLACEHOLDER ]
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about container">
+      <p class="about-text">
+        I'm a Computer Engineer from Mumbai, currently building AI systems that optimize real-world infrastructure. I care just as much about impact as I do about craft — always asking why, always shipping quality.
+      </p>
+      <div class="about-ctas">
+        <a href="#projects" class="btn btn-dark">Projects</a>
+        <a href="#" class="btn btn-outline">Resume</a>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience container">
+      <div class="section-title-wrapper">
+        <h2 class="section-title scroll-marquee">
+          <span class="title-en">I work as</span>
+          <span class="title-hi">· इंजीनियर</span>
+          <span class="title-en" style="margin-left: 2rem;">I work as</span>
+          <span class="title-hi">· इंजीनियर</span>
+        </h2>
+      </div>
+      
+      <div class="exp-grid">
+        <div class="card">
+          <div class="exp-header">
+            <span>AI/ML Engineer</span>
+            <span>Jun 2026</span>
+          </div>
+          <div class="exp-logo">HACKPRIX</div>
+          <p class="exp-desc">Built Kaizen-ml: AI data center cooling optimizer using SAC RL agent, physics-based digital twin (XGBoost), LSTM load forecaster.</p>
+          <div class="exp-stack">FastAPI · Next.js · Railway · Sarvam AI</div>
+        </div>
+        
+        <div class="card">
+          <div class="exp-header">
+            <span>Full-Stack + Product</span>
+            <span>Apr 2026</span>
+          </div>
+          <div class="exp-logo">SOLOMESH</div>
+          <p class="exp-desc">Client portal BaaS for India's independent consultants — tax, legal, trademark. Built pitch deck + MVP.</p>
+          <div class="exp-stack">React · Node.js · MongoDB</div>
+        </div>
+
+        <div class="card">
+          <div class="exp-header">
+            <span>CS Research</span>
+            <span>2022 - Pres</span>
+          </div>
+          <div class="exp-logo">SAKEC</div>
+          <p class="exp-desc">DAA, IoT, Python, Arduino/ESP32 firmware, algorithms.</p>
+          <div class="exp-stack">Academics · Research</div>
+        </div>
+
+        <div class="card">
+          <div class="exp-header">
+            <span>Org Lead</span>
+            <span>2026 - Pres</span>
+          </div>
+          <div class="exp-logo">KAIZEN-ML</div>
+          <p class="exp-desc">Open-source AI org. Data center optimization, women's safety analytics.</p>
+          <div class="exp-stack">Open Source · Leadership</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects container">
+      <div class="section-title-wrapper">
+        <h2 class="section-title scroll-marquee" data-direction="-1">
+          <span class="title-en">I love building</span>
+          <span class="title-hi">· प्रोजेक्ट्स</span>
+          <span class="title-en" style="margin-left: 2rem;">I love building</span>
+          <span class="title-hi">· प्रोजेक्ट्स</span>
+        </h2>
+      </div>
+
+      <div class="h-scroll-container">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-img" style="background-color: #008B8B;">
+            [ KAIZEN-ML IMAGE ]
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Kaizen-ml Cooling System</div>
+            <div class="project-tag">RL · AI</div>
+          </div>
+          <p class="project-desc">SAC agent optimizing PUE + WUE in data centers with a digital twin and LSTM load forecaster.</p>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-img" style="background-color: #D2691E;">
+            [ SOLOMESH IMAGE ]
+          </div>
+          <div class="project-meta">
+            <div class="project-title">SoloMesh</div>
+            <div class="project-tag">SAAS</div>
+          </div>
+          <p class="project-desc">BaaS platform for India's 50M+ independent consultants.</p>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-img" style="background-color: #8B0000;">
+            [ WOMEN'S SAFETY IMAGE ]
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Women's Safety Analytics</div>
+            <div class="project-tag">CV · AI</div>
+          </div>
+          <p class="project-desc">CCTV behavioral anomaly detection system for public spaces (SIH 2024 PS 1605).</p>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-img" style="background-color: #2E8B57;">
+            [ HEALTHCARE IMAGE ]
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Healthcare Allocator</div>
+            <div class="project-tag">ALGO</div>
+          </div>
+          <p class="project-desc">LaTeX academic paper replacing Bipartite Matching with Backtracking for pandemic resource allocation.</p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 2rem;">
+        <a href="https://github.com/bhanushaliparthhitesh" class="btn btn-dark" target="_blank">See all on GitHub</a>
+      </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section class="interests container">
+      <!-- Music -->
+      <div class="interest-sub">
+        <div class="section-title-wrapper">
+          <h2 class="section-title scroll-marquee">
+            <span class="title-en">I live for music</span>
+            <span class="title-hi">· संगीत</span>
+          </h2>
+        </div>
+        <div class="h-scroll-container">
+          <div class="music-card">[ Bollywood ]</div>
+          <div class="music-card">[ Lo-Fi ]</div>
+          <div class="music-card">[ F1 Soundtracks ]</div>
+          <div class="music-card">[ AR Rahman ]</div>
+          <div class="music-card">[ Arijit Singh ]</div>
+        </div>
+      </div>
+
+      <!-- F1 -->
+      <div class="interest-sub">
+        <div class="section-title-wrapper">
+          <h2 class="section-title scroll-marquee" data-direction="-1">
+            <span class="title-en">Switch is my podium</span>
+            <span class="title-hi">· रेस</span>
+          </h2>
+        </div>
+        <div class="h-scroll-container">
+          <div class="music-card" style="background-color: #1A1A1A; border-left: 8px solid #CC0000;">[ Max Verstappen ]</div>
+          <div class="music-card" style="background-color: #1A1A1A; border-left: 8px solid #00D2BE;">[ Lewis Hamilton ]</div>
+          <div class="music-card" style="background-color: #1A1A1A;">[ Current Season 2026 ]</div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9rem; font-weight: 600;">Verstappen vs Hamilton — the rivalry that defined an era</p>
+      </div>
+
+      <!-- Trekking -->
+      <div class="interest-sub">
+        <div class="section-title-wrapper">
+          <h2 class="section-title scroll-marquee">
+            <span class="title-en">I trek</span>
+            <span class="title-hi">· पहाड़</span>
+          </h2>
+        </div>
+        <div class="h-scroll-container">
+          <div class="project-img" style="background-color: #333; min-width: 350px;">[ Rajmachi Image ]</div>
+          <div class="project-img" style="background-color: #333; min-width: 350px;">[ Harishchandragad Image ]</div>
+          <div class="project-img" style="background-color: #333; min-width: 350px;">[ Next Summit TBD ]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q&A -->
+    <section class="qa container">
+      <h2 class="qa-title">Q&A</h2>
+      
+      <div class="qa-container">
+        <div class="qa-list">
+          <div class="qa-item">
+            <div class="qa-q">What makes a good engineer, in your opinion?</div>
+            <div class="qa-a">One who understands the problem before touching the keyboard. Code is just the medium — clarity is the craft.</div>
+          </div>
+          
+          <div class="qa-item">
+            <div class="qa-q">What do you do when you're not coding?</div>
+            <div class="qa-a">Trekking Maharashtra's Western Ghats, tracking F1 standings, eating my mom's Gujarati food, and taking care of my daily amla + chia seed ritual.</div>
+          </div>
+          
+          <div class="qa-item">
+            <div class="qa-q">What's a natural talent you've always had?</div>
+            <div class="qa-a">Connecting dots across domains. I can read a research paper on cooling systems and see a product in it.</div>
+          </div>
+          
+          <div class="qa-item">
+            <div class="qa-q">What keeps you up at night?</div>
+            <div class="qa-a">AI systems being built fast without being built right. I'm trying to be one of the people who builds them right.</div>
+          </div>
+          
+          <div class="qa-item">
+            <div class="qa-q">What are you into recently?</div>
+            <div class="qa-a">Deploying ML backends on Railway, integrating regional language AI (Sarvam AI), and learning how real data centers actually operate.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer container">
+      <div class="socials">
+        <a href="https://github.com/bhanushaliparthhitesh" target="_blank" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+        <a href="#" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+        <a href="mailto:parth@example.com" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
+      </div>
+      <div>&copy; 2024–2026 Parth Bhanushali</div>
+      <div>Made in Mumbai 🇮🇳</div>
+    </footer>
+  </main>
+
+  <!-- JavaScript -->
+  <script>
+    // Live Clock Update
+    function updateClock() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true };
+      const timeString = new Intl.DateTimeFormat('en-US', options).format(now);
+      document.getElementById('clock').textContent = timeString + ' IST';
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero Letter Stagger Animation
+    const heroChars = document.querySelectorAll('.hero-name .char');
+    gsap.to(heroChars, {
+      y: '0%',
+      duration: 1,
+      ease: "power4.out",
+      stagger: 0.05,
+      delay: 0.2
+    });
+
+    // Marquee Scroll Animations
+    const marquees = document.querySelectorAll('.scroll-marquee');
+    marquees.forEach((marquee) => {
+      // Data-direction determines left (-1) or right (1) movement
+      const direction = parseFloat(marquee.getAttribute('data-direction')) || 1;
+      
+      gsap.to(marquee, {
+        xPercent: direction * -30, // move by 30% of its width
+        ease: "none",
+        scrollTrigger: {
+          trigger: marquee.parentElement,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
+    });
+
+    // Card Fade/Lift on scroll
+    gsap.utils.toArray('.card, .project-card, .qa-item').forEach(card => {
+      gsap.from(card, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+        }
+      });
+    });
+  </script>
+</body>
+</html>
