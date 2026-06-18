@@ -1,5 +1,5 @@
 :root {
-  --bg-color: #F2A96B;
+  --bg-color: #EE9458;
   --text-color: #1A0A00;
   --card-bg: #EE9D5C;
   --pad-side: clamp(1.5rem, 5vw, 4rem);
@@ -34,7 +34,7 @@ a {
 /* Typography */
 .hero-name {
   font-family: var(--font-hero);
-  font-size: clamp(60px, 9vw, 130px);
+  font-size: clamp(65px, 10vw, 145px);
   line-height: 0.9;
   letter-spacing: -0.02em;
   margin-bottom: 2rem;

@@ -7,17 +7,25 @@ import Image from "next/image";
 
 export default function Hero() {
   const [timeString, setTimeString] = useState("");
+  const [dateString, setDateString] = useState("");
 
   useEffect(() => {
     const updateClock = () => {
       const now = new Date();
-      const options: Intl.DateTimeFormatOptions = { 
+      const timeOptions: Intl.DateTimeFormatOptions = { 
         timeZone: 'Asia/Kolkata', 
         hour: '2-digit', 
         minute: '2-digit', 
         hour12: true 
       };
-      setTimeString(new Intl.DateTimeFormat('en-US', options).format(now) + ' IST');
+      setTimeString(new Intl.DateTimeFormat('en-US', timeOptions).format(now) + ' IST');
+      
+      const dateOptions: Intl.DateTimeFormatOptions = {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+      };
+      setDateString(new Intl.DateTimeFormat('en-GB', dateOptions).format(now).toUpperCase());
     };
     updateClock();
     const interval = setInterval(updateClock, 1000);
@@ -50,7 +58,7 @@ export default function Hero() {
         </h1>
         <div className="hero-meta">
           <span>MUMBAI, INDIA</span>
-          <span>SAKEC CE '26</span>
+          <span>{dateString}</span>
           <span id="clock">{timeString}</span>
         </div>
       </div>
