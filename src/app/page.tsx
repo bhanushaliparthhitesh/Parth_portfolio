@@ -1,18 +1,24 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import Contact from "@/components/Contact";
+import Interests from "@/components/Interests";
+import QA from "@/components/QA";
+import Footer from "@/components/Footer";
+import FloatingCTA from "@/components/FloatingCTA";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main style={{ paddingTop: '80px' }}>
+      <FloatingCTA />
+      <main>
         <Hero />
         <About />
+        <Experience />
         <Projects />
-        <Contact />
+        <Interests />
+        <QA />
+        <Footer />
       </main>
     </>
   );

@@ -1,30 +1,72 @@
-import Link from 'next/link';
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Hero() {
+  const [timeString, setTimeString] = useState("");
+
+  useEffect(() => {
+    const updateClock = () => {
+      const now = new Date();
+      const options: Intl.DateTimeFormatOptions = { 
+        timeZone: 'Asia/Kolkata', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        hour12: true 
+      };
+      setTimeString(new Intl.DateTimeFormat('en-US', options).format(now) + ' IST');
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useGSAP(() => {
+    const heroChars = document.querySelectorAll('.hero-name .char');
+    gsap.to(heroChars, {
+      y: '0%',
+      duration: 1,
+      ease: "power4.out",
+      stagger: 0.05,
+      delay: 0.2
+    });
+  }, []);
+
   return (
-    <section id="hero" className="section container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
-      <div className="animate-fade-in" style={{ maxWidth: '800px', marginTop: '4rem' }}>
-        <p style={{ color: 'var(--accent-secondary)', fontWeight: 600, letterSpacing: '0.05em', marginBottom: '1rem' }}>
-          Hi, my name is
-        </p>
-        <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5.5rem)', marginBottom: '0.5rem', lineHeight: 1.1 }}>
-          Parth Bhanushali.
+    <section className="hero">
+      <div className="hero-left">
+        <div className="logo">PB</div>
+        <div className="hero-tagline">Building AI systems that ease, optimize, and delight.</div>
+        <h1 className="hero-name">
+          <span className="line">
+            <span className="char">P</span><span className="char">A</span><span className="char">R</span><span className="char">T</span><span className="char">H</span>
+          </span>
+          <span className="line">
+            <span className="char">B</span><span className="char">H</span><span className="char">A</span><span className="char">N</span><span className="char">U</span><span className="char">S</span><span className="char">H</span><span className="char">A</span><span className="char">L</span><span className="char">I</span>
+          </span>
         </h1>
-        <h2 style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: 1.1 }}>
-          I build <span className="text-gradient">digital experiences.</span>
-        </h2>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.125rem', maxWidth: '600px', marginBottom: '3rem', lineHeight: 1.6 }}>
-          I'm a software developer specializing in building exceptional web applications and digital products. I combine clean code with premium design to create engaging user experiences.
-        </p>
-        
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <Link href="#projects" className="btn btn-primary">
-            View My Work
-          </Link>
-          <Link href="#contact" className="btn btn-secondary">
-            Get In Touch
-          </Link>
+        <div className="hero-meta">
+          <span>MUMBAI, INDIA</span>
+          <span>SAKEC CE '26</span>
+          <span id="clock">{timeString}</span>
         </div>
+      </div>
+      <div className="hero-right">
+        <Image
+          src="/parth-hero.jpg"
+          alt="Parth Bhanushali"
+          fill
+          priority
+          quality={100}
+          style={{
+            objectFit: 'cover',
+            objectPosition: '42% top',
+            filter: 'contrast(1.12) brightness(0.93) saturate(1.2)',
+          }}
+        />
       </div>
     </section>
   );

@@ -1,70 +1,107 @@
-import Link from 'next/link';
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "Project Alpha",
-      description: "A comprehensive web application built with Next.js and Node.js. Features real-time data synchronization and a responsive dashboard.",
-      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
-      link: "#",
-      github: "#"
-    },
-    {
-      title: "Project Beta",
-      description: "An e-commerce platform with a custom CMS and seamless payment integration. Designed for high conversion and performance.",
-      techStack: ["React", "Express", "MongoDB", "Stripe"],
-      link: "#",
-      github: "#"
-    },
-    {
-      title: "Project Gamma",
-      description: "A machine learning dashboard that visualizes complex datasets in an intuitive and interactive way.",
-      techStack: ["Vue.js", "Python", "FastAPI", "D3.js"],
-      link: "#",
-      github: "#"
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    const marquee = document.querySelector('.projects .scroll-marquee');
+    if (marquee && marquee.parentElement) {
+      gsap.to(marquee, {
+        xPercent: 30, // -1 direction
+        ease: "none",
+        scrollTrigger: {
+          trigger: marquee.parentElement,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
+        }
+      });
     }
-  ];
+
+    gsap.utils.toArray('.projects .project-card').forEach(card => {
+      gsap.from(card as Element, {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card as Element,
+          start: "top 90%",
+        }
+      });
+    });
+  }, { scope: containerRef });
 
   return (
-    <section id="projects" className="section container" style={{ padding: '8rem 2rem' }}>
-      <div className="animate-fade-in delay-200">
-        <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '3rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <span className="text-gradient">02.</span> Some Things I've Built
-          <div style={{ height: '1px', background: 'var(--border-highlight)', flex: 1, maxWidth: '300px' }}></div>
+    <section id="projects" ref={containerRef} className="projects container">
+      <div className="section-title-wrapper">
+        <h2 className="section-title scroll-marquee" data-direction="-1">
+          <span className="title-en">I love building</span>
+          <span className="title-hi">· प्रोजेक्ट्स</span>
+          <span className="title-en" style={{ marginLeft: "2rem" }}>I love building</span>
+          <span className="title-hi">· प्रोजेक्ट्स</span>
         </h2>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem' }}>
-          {projects.map((project, idx) => (
-            <div key={idx} className="glass project-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <span style={{ fontSize: '2.5rem', color: 'var(--accent-primary)' }}>📁</span>
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  <Link href={project.github} className="nav-link" aria-label="GitHub Link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                  </Link>
-                  <Link href={project.link} className="nav-link" aria-label="External Link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                  </Link>
-                </div>
-              </div>
-              
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--text-primary)' }}>
-                {project.title}
-              </h3>
-              
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', flex: 1, marginBottom: '2rem' }}>
-                {project.description}
-              </p>
-              
-              <ul style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                {project.techStack.map((tech, i) => (
-                  <li key={i}>{tech}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+      </div>
+
+      <div className="h-scroll-container">
+        {/* Project 1 */}
+        <div className="project-card">
+          <div className="project-img" style={{ backgroundColor: "#008B8B" }}>
+            [ KAIZEN-ML IMAGE ]
+          </div>
+          <div className="project-meta">
+            <div className="project-title">Kaizen-ml Cooling System</div>
+            <div className="project-tag">RL · AI</div>
+          </div>
+          <p className="project-desc">SAC agent optimizing PUE + WUE in data centers with a digital twin and LSTM load forecaster.</p>
         </div>
+        
+        {/* Project 2 */}
+        <div className="project-card">
+          <div className="project-img" style={{ backgroundColor: "#D2691E" }}>
+            [ SOLOMESH IMAGE ]
+          </div>
+          <div className="project-meta">
+            <div className="project-title">SoloMesh</div>
+            <div className="project-tag">SAAS</div>
+          </div>
+          <p className="project-desc">BaaS platform for India's 50M+ independent consultants.</p>
+        </div>
+
+        {/* Project 3 */}
+        <div className="project-card">
+          <div className="project-img" style={{ backgroundColor: "#8B0000" }}>
+            [ WOMEN'S SAFETY IMAGE ]
+          </div>
+          <div className="project-meta">
+            <div className="project-title">Women's Safety Analytics</div>
+            <div className="project-tag">CV · AI</div>
+          </div>
+          <p className="project-desc">CCTV behavioral anomaly detection system for public spaces (SIH 2024 PS 1605).</p>
+        </div>
+
+        {/* Project 4 */}
+        <div className="project-card">
+          <div className="project-img" style={{ backgroundColor: "#2E8B57" }}>
+            [ HEALTHCARE IMAGE ]
+          </div>
+          <div className="project-meta">
+            <div className="project-title">Healthcare Allocator</div>
+            <div className="project-tag">ALGO</div>
+          </div>
+          <p className="project-desc">LaTeX academic paper replacing Bipartite Matching with Backtracking for pandemic resource allocation.</p>
+        </div>
+      </div>
+      
+      <div style={{ marginTop: "2rem" }}>
+        <a href="https://github.com/bhanushaliparthhitesh" className="btn btn-dark" target="_blank" rel="noreferrer">See all on GitHub</a>
       </div>
     </section>
   );
