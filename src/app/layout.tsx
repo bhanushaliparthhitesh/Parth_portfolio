@@ -39,6 +39,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${bebasNeue.variable} ${inter.variable} ${notoSansDevanagari.variable} ${playfairDisplay.variable}`}>
+      <head>
+        <link
+          rel="preload"
+          href="/parth-hero.jpg"
+          as="image"
+          type="image/jpeg"
+        />
+      </head>
       <body>
         {children}
       </body>
