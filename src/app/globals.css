@@ -88,8 +88,8 @@ a {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 4rem;
-  height: 4rem;
+  width: 4.5rem;
+  height: 4.5rem;
   background-color: var(--text-color);
   border-radius: 50%;
   display: flex;
@@ -104,8 +104,8 @@ a {
   transform: scale(1.1);
 }
 .floating-cta svg {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   fill: var(--bg-color);
 }
 
@@ -288,7 +288,7 @@ a {
 
 /* About Section */
 .about {
-  padding: 8rem 0;
+  padding: 8rem 0 100px 0;
 }
 .about-text {
   font-family: var(--font-jakarta);
@@ -306,7 +306,7 @@ a {
 
 /* Experience Section */
 .experience {
-  padding: 6rem 0;
+  padding: 100px 0 6rem 0;
 }
 .exp-grid {
   display: grid;
