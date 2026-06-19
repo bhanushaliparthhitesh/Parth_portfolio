@@ -4,23 +4,59 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import { motion } from "framer-motion";
+import ShowCard, { Show } from "./ShowCard";
+import showsStyles from "./ShowsSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const shows: Show[] = [
+  {
+    title: "OPPENHEIMER",
+    genre: "THRILLER",
+    type: "FILM",
+    poster: "/shows/oppenheimer.jpg",
+    favorite: true,
+  },
+  {
+    title: "MR. ROBOT",
+    genre: "DRAMA",
+    type: "TV SERIES",
+    poster: "/shows/mrrobot.jpg",
+    favorite: false,
+  },
+  {
+    title: "INTERSTELLAR",
+    genre: "SCI-FI",
+    type: "FILM",
+    poster: "/shows/interstellar.jpg",
+    favorite: false,
+  },
+  {
+    title: "BLACK MIRROR",
+    genre: "SCI-FI · THRILLER",
+    type: "TV SERIES",
+    poster: "/shows/blackmirror.jpg",
+    favorite: false,
+  },
+];
 
 export default function Experience() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // Title Animation
-    gsap.to('.experience .char', {
-      y: '0%',
-      duration: 1,
-      ease: "power4.out",
-      stagger: 0.05,
-      scrollTrigger: {
-        trigger: '.section-title-wrapper',
-        start: "top 80%",
-      }
+    // Title Animation for multiple sections
+    gsap.utils.toArray('.section-title-wrapper').forEach(wrapper => {
+      gsap.to((wrapper as Element).querySelectorAll('.char'), {
+        y: '0%',
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: wrapper as Element,
+          start: "top 80%",
+        }
+      });
     });
 
     // Cards
@@ -97,6 +133,41 @@ export default function Experience() {
           <p className="exp-desc">Python is my sharpest tool. I use it across ML, backend APIs, data pipelines, automation scripts, and anything in between.</p>
           <div className="exp-stack">Python · FastAPI · NumPy · Pandas · Docker · Railway</div>
         </div>
+      </div>
+
+      <div className="section-title-wrapper" style={{ marginTop: '8rem' }}>
+        <h2 className="section-title">
+          <span className="line title-en">
+            {Array.from("I love shows").map((char, i) => (
+              <span key={`shows-en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+            ))}
+          </span>
+          <span className="line title-hi">
+            <span className="char">·</span>
+            <span className="">&nbsp;</span>
+            {["शो", "ज़"].map((char, i) => (
+              <span key={`shows-hi-${i}`} className="char">{char}</span>
+            ))}
+          </span>
+        </h2>
+      </div>
+
+      <div className={showsStyles.cardsRow}>
+        {shows.map((show, index) => (
+          <motion.div
+            key={show.title}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+              delay: index * 0.1,
+            }}
+          >
+            <ShowCard show={show} index={index} />
+          </motion.div>
+        ))}
       </div>
     </section>
   );

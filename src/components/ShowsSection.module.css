@@ -1,0 +1,148 @@
+.showsSection {
+  width: 100%;
+  background: #F2A96B;
+  padding: 100px 80px;
+}
+
+.italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 700;
+  color: #1A0A00;
+}
+
+.hindi {
+  font-family: var(--font-hindi); /* I will use existing var(--font-hindi) */
+  font-size: clamp(36px, 4.5vw, 68px);
+  font-weight: 700;
+  color: #1A0A00;
+}
+
+.cardsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  align-items: end;
+}
+
+@media (max-width: 1024px) {
+  .showsSection {
+    padding: 80px 40px;
+  }
+  .cardsRow {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .showsSection {
+    padding: 60px 20px;
+  }
+  .cardsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.posterWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #1A0A00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.placeholderTitle {
+  color: #ffffff;
+  font-family: var(--font-inter);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.favBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #1A0A00;
+  color: #F2A96B;
+  font-family: var(--font-inter);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 6px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.cardMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 0 2px;
+}
+
+.metaLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.showTitle {
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 700;
+  color: #1A0A00;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.showGenre {
+  font-family: var(--font-inter);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(26, 10, 0, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 4px 0 0 0;
+}
+
+.typePill {
+  font-family: var(--font-inter);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #1A0A00;
+  border: 1.5px solid rgba(26, 10, 0, 0.3);
+  border-radius: 100px;
+  padding: 4px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: 12px;
+  margin-top: 2px;
+}

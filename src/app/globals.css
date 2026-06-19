@@ -319,7 +319,7 @@ a {
 
 /* Experience Section */
 .experience {
-  padding: 100px 0 6rem 0;
+  padding: 100px 100px 6rem 0;
 }
 .exp-grid {
   display: grid;
@@ -394,7 +394,7 @@ a {
 
 /* Horizontal Scroll Sections */
 .projects, .interests {
-  padding: 6rem 0;
+  padding: 6rem 100px 6rem 0;
 }
 .h-scroll-container {
   display: flex;
@@ -466,7 +466,7 @@ a {
 
 /* Q&A Section */
 .qa {
-  padding: 8rem 0;
+  padding: 8rem 100px 8rem 0;
   position: relative;
 }
 .qa-container {
