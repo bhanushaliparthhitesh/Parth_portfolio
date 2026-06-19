@@ -429,12 +429,23 @@ a {
   display: flex;
   gap: 2rem;
   overflow-x: auto;
+  padding-top: 16px; /* Prevents cards from getting clipped when they hover up */
   padding-bottom: 2rem;
   scroll-snap-type: x mandatory;
   scrollbar-width: none; /* Firefox */
 }
 .h-scroll-container::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
+}
+
+/* Full-bleed wrapper for horizontal scrolling to break out of container padding */
+.music-scroll-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-left: 120px;
+  padding-right: 120px;
 }
 .project-card {
   min-width: 350px;
@@ -482,15 +493,118 @@ a {
   margin-bottom: 4rem;
 }
 .music-card {
-  min-width: 250px;
-  height: 250px;
-  background-color: #1A1A1A;
-  border-radius: 12px;
+  min-width: 300px;
+  height: 360px;
+  background-color: #030303;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  position: relative;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+}
+
+.music-card:hover {
+  transform: translateY(-8px);
+}
+
+@keyframes spinDisc {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.music-art {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: #1A1A1A; /* Placeholder color */
+  border-radius: 50%;
+  margin-bottom: auto;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.4);
-  scroll-snap-align: start;
+  animation: spinDisc 8s linear infinite;
+  animation-play-state: paused;
+}
+
+.music-card:hover .music-art {
+  animation-play-state: running;
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.music-title {
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.music-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.apple-logo {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 14px;
+  height: 16px;
+  fill: #FFFFFF;
+}
+
+.youtube-logo {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 20px;
+  height: 14px;
+  fill: #FFFFFF;
+}
+
+.music-scroll-controls {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.scroll-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A0A00;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.scroll-btn:hover {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
+
+.scroll-btn svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Q&A Section */
