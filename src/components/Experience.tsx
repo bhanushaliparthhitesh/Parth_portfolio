@@ -12,31 +12,31 @@ gsap.registerPlugin(ScrollTrigger);
 
 const shows: Show[] = [
   {
-    title: "OPPENHEIMER",
-    genre: "THRILLER",
+    title: "TENET",
+    genre: "ACTION · SCI-FI",
     type: "FILM",
-    poster: "/shows/oppenheimer.jpg",
+    poster: "/shows/tenet-grid.jpg",
     favorite: true,
   },
   {
-    title: "MR. ROBOT",
-    genre: "DRAMA",
-    type: "TV SERIES",
-    poster: "/shows/mrrobot.jpg",
-    favorite: false,
-  },
-  {
-    title: "INTERSTELLAR",
-    genre: "SCI-FI",
+    title: "PROJECT HAIL MARY",
+    genre: "SCI-FI · ADVENTURE",
     type: "FILM",
-    poster: "/shows/interstellar.jpg",
+    poster: "/shows/hailmary-poster.jpg",
     favorite: false,
   },
   {
-    title: "BLACK MIRROR",
-    genre: "SCI-FI · THRILLER",
+    title: "FROM",
+    genre: "HORROR",
     type: "TV SERIES",
-    poster: "/shows/blackmirror.jpg",
+    poster: "/shows/from-poster-v2.jpg",
+    favorite: false,
+  },
+  {
+    title: "MADGAON EXPRESS",
+    genre: "COMEDY",
+    type: "FILM",
+    poster: "/shows/madgaon-poster.jpg",
     favorite: false,
   },
 ];
