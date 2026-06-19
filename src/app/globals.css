@@ -525,12 +525,11 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: spinDisc 8s linear infinite;
-  animation-play-state: paused;
+  transform: rotate(0deg);
 }
 
 .music-card:hover .music-art {
-  animation-play-state: running;
+  animation: spinDisc 8s linear infinite;
 }
 
 .music-info {

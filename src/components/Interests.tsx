@@ -56,30 +56,32 @@ export default function Interests() {
         </div>
         <div className="h-scroll-container music-scroll-bleed" ref={scrollContainerRef}>
           {[
-            { title: "ALL TIME FAVORITE", subtitle: "APPLE MUSIC", logo: "apple", color: "#FFD700" },
-            { title: "SOUNDTRACK MODE", subtitle: "APPLE MUSIC", logo: "apple", color: "#8A2BE2" },
-            { title: "LOVE VIBIN", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF69B4" },
-            { title: "WORK TUNES", subtitle: "APPLE MUSIC", logo: "apple", color: "#00CED1" },
-            { title: "IN THE BACKGROUND", subtitle: "YOUTUBE", logo: "youtube", color: "#1E90FF" },
-            { title: "LOFI GIRL", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF4500" },
+            { title: "The Crux", subtitle: "APPLE MUSIC", logo: "apple", color: "#FFD700", link: "https://music.apple.com/in/library/albums/l.Hz4Snjc", image: "/image copy.png" },
+            { title: "The Indian Odyssey", subtitle: "APPLE MUSIC", logo: "apple", color: "#8A2BE2", link: "https://music.apple.com/in/library/albums/l.dIgi2kh", image: "/image copy 2.png" },
+            { title: "Scaled And Icy", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF69B4", link: "https://music.apple.com/in/library/albums/l.tRxQcL7", image: "/image copy 3.png" },
+            { title: "Yellow Paper Daisy", subtitle: "APPLE MUSIC", logo: "apple", color: "#00CED1", link: "https://music.apple.com/us/album/yellow-paper-daisy/1584302048?i=1584302051", image: "/image copy 5.png" },
+            { title: "Bad", subtitle: "APPLE MUSIC", logo: "apple", color: "#1E90FF", link: "https://music.apple.com/in/album/bad/559334659", image: "/image copy 4.png" },
+            { title: "Dracula", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF4500", link: "https://music.apple.com/in/album/dracula/1842444456?i=1842444457", image: "/image.png" },
             // Duplicated to create the infinity scroll effect
-            { title: "ALL TIME FAVORITE", subtitle: "APPLE MUSIC", logo: "apple", color: "#FFD700" },
-            { title: "SOUNDTRACK MODE", subtitle: "APPLE MUSIC", logo: "apple", color: "#8A2BE2" },
-            { title: "LOVE VIBIN", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF69B4" },
-            { title: "WORK TUNES", subtitle: "APPLE MUSIC", logo: "apple", color: "#00CED1" },
-            { title: "IN THE BACKGROUND", subtitle: "YOUTUBE", logo: "youtube", color: "#1E90FF" },
-            { title: "LOFI GIRL", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF4500" },
+            { title: "The Crux", subtitle: "APPLE MUSIC", logo: "apple", color: "#FFD700", link: "https://music.apple.com/in/library/albums/l.Hz4Snjc", image: "/image copy.png" },
+            { title: "The Indian Odyssey", subtitle: "APPLE MUSIC", logo: "apple", color: "#8A2BE2", link: "https://music.apple.com/in/library/albums/l.dIgi2kh", image: "/image copy 2.png" },
+            { title: "Scaled And Icy", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF69B4", link: "https://music.apple.com/in/library/albums/l.tRxQcL7", image: "/image copy 3.png" },
+            { title: "Yellow Paper Daisy", subtitle: "APPLE MUSIC", logo: "apple", color: "#00CED1", link: "https://music.apple.com/us/album/yellow-paper-daisy/1584302048?i=1584302051", image: "/image copy 5.png" },
+            { title: "Bad", subtitle: "APPLE MUSIC", logo: "apple", color: "#1E90FF", link: "https://music.apple.com/in/album/bad/559334659", image: "/image copy 4.png" },
+            { title: "Dracula", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF4500", link: "https://music.apple.com/in/album/dracula/1842444456?i=1842444457", image: "/image.png" },
             // Duplicated again to ensure smooth endless feel
-            { title: "ALL TIME FAVORITE", subtitle: "APPLE MUSIC", logo: "apple", color: "#FFD700" },
-            { title: "SOUNDTRACK MODE", subtitle: "APPLE MUSIC", logo: "apple", color: "#8A2BE2" },
-            { title: "LOVE VIBIN", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF69B4" },
-            { title: "WORK TUNES", subtitle: "APPLE MUSIC", logo: "apple", color: "#00CED1" },
-            { title: "IN THE BACKGROUND", subtitle: "YOUTUBE", logo: "youtube", color: "#1E90FF" },
-            { title: "LOFI GIRL", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF4500" },
+            { title: "The Crux", subtitle: "APPLE MUSIC", logo: "apple", color: "#FFD700", link: "https://music.apple.com/in/library/albums/l.Hz4Snjc", image: "/image copy.png" },
+            { title: "The Indian Odyssey", subtitle: "APPLE MUSIC", logo: "apple", color: "#8A2BE2", link: "https://music.apple.com/in/library/albums/l.dIgi2kh", image: "/image copy 2.png" },
+            { title: "Scaled And Icy", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF69B4", link: "https://music.apple.com/in/library/albums/l.tRxQcL7", image: "/image copy 3.png" },
+            { title: "Yellow Paper Daisy", subtitle: "APPLE MUSIC", logo: "apple", color: "#00CED1", link: "https://music.apple.com/us/album/yellow-paper-daisy/1584302048?i=1584302051", image: "/image copy 5.png" },
+            { title: "Bad", subtitle: "APPLE MUSIC", logo: "apple", color: "#1E90FF", link: "https://music.apple.com/in/album/bad/559334659", image: "/image copy 4.png" },
+            { title: "Dracula", subtitle: "APPLE MUSIC", logo: "apple", color: "#FF4500", link: "https://music.apple.com/in/album/dracula/1842444456?i=1842444457", image: "/image.png" },
           ].map((playlist, idx) => (
-            <div key={idx} className="music-card">
+            <a key={idx} href={playlist.link} target="_blank" rel="noopener noreferrer" className="music-card">
               <div className="music-art" style={{ background: `linear-gradient(135deg, ${playlist.color}22, ${playlist.color}88)` }}>
-                {/* Visual placeholder for the album circle */}
+                {playlist.image && (
+                  <img src={playlist.image} alt={playlist.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                )}
               </div>
               <div className="music-info">
                 <span className="music-title">{playlist.title}</span>
@@ -94,7 +96,7 @@ export default function Interests() {
                   <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.781 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/>
                 </svg>
               )}
-            </div>
+            </a>
           ))}
         </div>
         <div className="music-scroll-controls">
