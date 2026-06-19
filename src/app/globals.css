@@ -34,9 +34,10 @@ a {
 /* Typography */
 .hero-name {
   font-family: var(--font-hero);
-  font-size: clamp(80px, 11.5vw, 148px);
+  font-size: clamp(72px, 10.5vw, 140px);
   line-height: 0.88;
   letter-spacing: -0.02em;
+  color: #1A0A00;
   margin-bottom: 0;
   text-transform: uppercase;
   display: flex;
@@ -152,17 +153,18 @@ a {
 }
 
 .logo {
-  background-color: #1A0A00;
-  color: #F2A96B;
-  font-family: var(--font-hero);
-  font-size: 2rem;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 72px;
+  height: 72px;
+  background: #1A0A00;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  line-height: 1;
+  font-family: var(--font-hero);
+  font-size: 28px;
+  color: #F2A96B;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 
 .hero-tagline {
@@ -194,8 +196,17 @@ a {
   );
 }
 
+.logo-row {
+  display: flex;
+  align-items: flex-start;
+}
+
 .name-block {
-  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  padding-top: 24px;
 }
 
 .hero-right {

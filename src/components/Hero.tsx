@@ -46,7 +46,9 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-left">
-        <div className="logo">PB</div>
+        <div className="logo-row">
+          <div className="logo">PB</div>
+        </div>
         <div className="name-block">
           <h1 className="hero-name">
             <span className="line">
@@ -70,7 +72,6 @@ export default function Hero() {
             </span>
           </p>
         </div>
-        <div style={{ flex: 1 }} />
         <div className="hero-meta">
           <span>MUMBAI, INDIA</span>
           <span>{dateString}</span>
