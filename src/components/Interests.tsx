@@ -115,31 +115,6 @@ export default function Interests() {
         </div>
       </div>
 
-      {/* F1 */}
-      <div className="interest-sub">
-        <div className="section-title-wrapper">
-          <h2 className="section-title">
-            <span className="line title-en">
-              {Array.from("Switch is my podium").map((char, i) => (
-                <span key={`en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
-              ))}
-            </span>
-            <span className="line title-hi">
-              <span className="char">·</span>
-              <span className="">&nbsp;</span>
-              {["रे", "स"].map((char, i) => (
-                <span key={`hi-${i}`} className="char">{char}</span>
-              ))}
-            </span>
-          </h2>
-        </div>
-        <div className="h-scroll-container">
-          <div className="music-card" style={{ backgroundColor: "#1A1A1A", borderLeft: "8px solid #CC0000" }}>[ Max Verstappen ]</div>
-          <div className="music-card" style={{ backgroundColor: "#1A1A1A", borderLeft: "8px solid #00D2BE" }}>[ Lewis Hamilton ]</div>
-          <div className="music-card" style={{ backgroundColor: "#1A1A1A" }}>[ Current Season 2026 ]</div>
-        </div>
-        <p style={{ marginTop: "1rem", fontSize: "0.9rem", fontWeight: 600 }}>Verstappen vs Hamilton — the rivalry that defined an era</p>
-      </div>
 
       {/* Trekking */}
       <div className="interest-sub">
