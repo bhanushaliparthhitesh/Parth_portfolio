@@ -47,7 +47,7 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-left">
         <div className="logo-row">
-          <div className="logo">PB</div>
+          <div className="logo">P.B</div>
         </div>
         <div className="name-block">
           <h1 className="hero-name">
