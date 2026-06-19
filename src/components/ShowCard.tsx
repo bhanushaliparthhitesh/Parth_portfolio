@@ -8,6 +8,7 @@ export interface Show {
   type: string;
   poster: string;
   favorite: boolean;
+  description: string;
 }
 
 interface ShowCardProps {

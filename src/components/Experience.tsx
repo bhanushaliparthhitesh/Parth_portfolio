@@ -17,6 +17,7 @@ const shows: Show[] = [
     type: "FILM",
     poster: "/shows/tenet-grid.jpg",
     favorite: true,
+    description: "Nolan at his most ambitious — and most exhausting. The inversion mechanic is genuinely mind-bending, and the action sequences are unlike anything else on screen. But the film prioritizes spectacle over emotional stakes, leaving characters feeling thin. Worth watching for the craft alone, but don't expect to fully understand it on the first watch. 7.5/10",
   },
   {
     title: "PROJECT HAIL MARY",
@@ -24,6 +25,7 @@ const shows: Show[] = [
     type: "FILM",
     poster: "/shows/hailmary-poster.jpg",
     favorite: false,
+    description: "One of the best sci-fi films in years. Ryan Gosling carries it brilliantly, and the story — adapted from Andy Weir's novel — balances hard science with real heart. The friendship at its core is surprisingly moving. If you liked The Martian, this hits even harder. 9/10",
   },
   {
     title: "FROM",
@@ -31,6 +33,7 @@ const shows: Show[] = [
     type: "TV SERIES",
     poster: "/shows/from-poster-v2.jpg",
     favorite: false,
+    description: "Slow-burn horror done right. It builds dread methodically without cheap jump scares. The mystery deepens each season without feeling like it's stalling. If you're patient with it, it's genuinely unsettling. Just don't expect quick answers. 8/10",
   },
   {
     title: "MADGAON EXPRESS",
@@ -38,6 +41,7 @@ const shows: Show[] = [
     type: "FILM",
     poster: "/shows/madgaon-poster.jpg",
     favorite: false,
+    description: "A surprisingly sharp Bollywood comedy. Kunal Khemmu's directorial debut punches above its weight — the writing is tight, the trio's chemistry works, and it doesn't overstay its welcome. Great pick if you want a breezy, fun watch. 7.5/10",
   },
 ];
 
@@ -168,6 +172,25 @@ export default function Experience() {
             <ShowCard show={show} index={index} />
           </motion.div>
         ))}
+      </div>
+
+      <div className={showsStyles.descriptionsRow}>
+        {shows.map((show, index) => (
+          <motion.div 
+            key={`desc-${index}`}
+            className={showsStyles.descColumn}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+          >
+            <p className={showsStyles.descText} style={{ whiteSpace: 'pre-line' }}>{show.description}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className={showsStyles.actionsRow}>
+        <button className={showsStyles.seeFullListBtn}>SEE FULL LIST</button>
       </div>
     </section>
   );
