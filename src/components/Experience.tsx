@@ -60,42 +60,42 @@ export default function Experience() {
       <div className="exp-grid">
         <div className="card">
           <div className="exp-header">
-            <span>AI/ML Engineer</span>
-            <span>Jun 2026</span>
+            <span>AI / ML ENGINEER</span>
+            <span className="exp-avail">AVAILABLE</span>
           </div>
-          <div className="exp-logo">HACKPRIX</div>
-          <p className="exp-desc">Built Kaizen-ml: AI data center cooling optimizer using SAC RL agent, physics-based digital twin (XGBoost), LSTM load forecaster.</p>
-          <div className="exp-stack">FastAPI · Next.js · Railway · Sarvam AI</div>
+          <div className="exp-logo">AI Engineer</div>
+          <p className="exp-desc">I build intelligent systems that learn, adapt, and make decisions. From reinforcement learning agents to production ML pipelines — I care about models that actually ship.</p>
+          <div className="exp-stack">Python · PyTorch · Scikit-learn · Stable-Baselines3 · MLflow</div>
         </div>
         
         <div className="card">
           <div className="exp-header">
-            <span>Full-Stack + Product</span>
-            <span>Apr 2026</span>
+            <span>FULL STACK DEVELOPER</span>
+            <span className="exp-avail">AVAILABLE</span>
           </div>
-          <div className="exp-logo">SOLOMESH</div>
-          <p className="exp-desc">Client portal BaaS for India's independent consultants — tax, legal, trademark. Built pitch deck + MVP.</p>
-          <div className="exp-stack">React · Node.js · MongoDB</div>
+          <div className="exp-logo">Full Stack Dev</div>
+          <p className="exp-desc">I build complete products — from database schema to pixel-perfect UI. Fast, scalable, and clean on both ends of the stack.</p>
+          <div className="exp-stack">Next.js · React · Node.js · FastAPI · MongoDB · PostgreSQL</div>
         </div>
 
         <div className="card">
           <div className="exp-header">
-            <span>CS Research</span>
-            <span>2022 - Pres</span>
+            <span>AI AGENT ENGINEER</span>
+            <span className="exp-avail">AVAILABLE</span>
           </div>
-          <div className="exp-logo">SAKEC</div>
-          <p className="exp-desc">DAA, IoT, Python, Arduino/ESP32 firmware, algorithms.</p>
-          <div className="exp-stack">Academics · Research</div>
+          <div className="exp-logo">Agent Builder</div>
+          <p className="exp-desc">I design and build autonomous AI agents that reason, use tools, and complete multi-step tasks without hand-holding. LLMs that actually do things.</p>
+          <div className="exp-stack">LangChain · OpenAI API · Sarvam AI · MCP · RAG</div>
         </div>
 
         <div className="card">
           <div className="exp-header">
-            <span>Org Lead</span>
-            <span>2026 - Pres</span>
+            <span>PYTHON DEVELOPER</span>
+            <span className="exp-avail">AVAILABLE</span>
           </div>
-          <div className="exp-logo">KAIZEN-ML</div>
-          <p className="exp-desc">Open-source AI org. Data center optimization, women's safety analytics.</p>
-          <div className="exp-stack">Open Source · Leadership</div>
+          <div className="exp-logo">Python Dev</div>
+          <p className="exp-desc">Python is my sharpest tool. I use it across ML, backend APIs, data pipelines, automation scripts, and anything in between.</p>
+          <div className="exp-stack">Python · FastAPI · NumPy · Pandas · Docker · Railway</div>
         </div>
       </div>
     </section>
