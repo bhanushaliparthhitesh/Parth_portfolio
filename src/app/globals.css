@@ -27,7 +27,7 @@ a {
 
 .container {
   max-width: 1440px;
-  margin-left: 160px; /* Reserves the 160px left column */
+  margin-left: 120px; /* Reserves space for the left side nav */
   margin-right: auto; /* Centers the content within the remaining space on ultra-wide screens */
   padding: 0 var(--pad-side);
 }
@@ -90,6 +90,8 @@ a {
   font-weight: 400;
   letter-spacing: -0.02em;
 }
+
+/* About Section */
 
 .title-hi {
   font-family: var(--font-hindi);
@@ -200,9 +202,9 @@ a {
   left: 0;
   width: calc(100vw - 772px); /* Takes exactly the space left of hero-right */
   height: 100vh;
-  padding: 32px 40px; /* 40px right padding keeps a small gap between text and image */
+  padding: 32px 40px 32px 0; /* Removed extra left padding so grid controls spacing */
   display: grid;
-  grid-template-columns: 160px 1fr; /* 160px clear space on left for future slider, 1fr for content */
+  grid-template-columns: 120px 1fr; /* 120px clear space on left for sidenav, 1fr for content */
   grid-template-rows: 1fr auto; /* Name block in middle, meta at bottom */
   background: linear-gradient(
     160deg,
@@ -223,7 +225,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-left: auto; /* Pushes the block to the right */
+  margin-left: 20px; /* Gives a small buffer from the sidenav zone, rather than pushing all the way right */
   max-width: fit-content; 
   padding-top: 24px;
 }
@@ -275,7 +277,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
+  width: 120px;
   height: 100%;
   background: linear-gradient(
     to right,
@@ -297,6 +299,60 @@ a {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #3D1F00;
+}
+
+@media (max-width: 1200px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+  .hero-left {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    min-height: 60vh;
+    padding-bottom: 60px;
+    z-index: 2;
+  }
+  .hero-right {
+    position: relative;
+    width: 100vw;
+    height: 40vh;
+    z-index: 1;
+  }
+  .hero-right::after {
+    display: none; /* No gradient fade needed when stacked */
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-left {
+    grid-template-columns: 0px 1fr;
+    padding-left: 20px;
+  }
+  .name-block {
+    margin-left: 20px;
+  }
+  .hero-meta {
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-left {
+    min-height: 50vh;
+  }
+  .hero-name {
+    font-size: clamp(48px, 12vw, 72px); /* Let it shrink more on mobile */
+  }
+  .hero-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }
 
 /* About Section */
