@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter, Noto_Sans_Devanagari, Playfair_Display } from "next/font/google";
+import SideNav from "@/components/SideNav";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({ 
@@ -48,6 +49,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SideNav />
         {children}
       </body>
     </html>

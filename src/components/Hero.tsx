@@ -46,9 +46,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-left">
-        <div className="logo-row">
-          <div className="logo">P.B</div>
-        </div>
+
         <div className="name-block">
           <h1 className="hero-name">
             <span className="line">

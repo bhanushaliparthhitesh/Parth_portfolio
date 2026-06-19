@@ -1,0 +1,56 @@
+.sideNav {
+  position: fixed;
+  top: 32px;
+  left: 40px;
+  background-color: #1A0A00;
+  border-radius: 14px;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(26, 10, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.sideNav:hover {
+  box-shadow: 0 12px 32px rgba(26, 10, 0, 0.3);
+}
+
+.logoRow {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 16px 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.navLink {
+  width: 100%;
+  padding: 14px 24px;
+  text-align: left;
+  font-family: Inter, var(--font-body), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(242, 169, 107, 0.5);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: #F2A96B;
+  background-color: rgba(242, 169, 107, 0.05);
+}
