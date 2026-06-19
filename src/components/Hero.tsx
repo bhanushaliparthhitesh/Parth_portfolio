@@ -47,15 +47,30 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-left">
         <div className="logo">PB</div>
-        <div className="hero-tagline">Building AI systems that ease, optimize, and delight.</div>
-        <h1 className="hero-name">
-          <span className="line">
-            <span className="char">P</span><span className="char">A</span><span className="char">R</span><span className="char">T</span><span className="char">H</span>
-          </span>
-          <span className="line">
-            <span className="char">B</span><span className="char">H</span><span className="char">A</span><span className="char">N</span><span className="char">U</span><span className="char">S</span><span className="char">H</span><span className="char">A</span><span className="char">L</span><span className="char">I</span>
-          </span>
-        </h1>
+        <div className="name-block">
+          <h1 className="hero-name">
+            <span className="line">
+              <span className="char">P</span><span className="char">A</span><span className="char">R</span><span className="char">T</span><span className="char">H</span>
+            </span>
+            <span className="line">
+              <span className="char">B</span><span className="char">H</span><span className="char">A</span><span className="char">N</span><span className="char">U</span><span className="char">S</span><span className="char">H</span><span className="char">A</span><span className="char">L</span><span className="char">I</span>
+            </span>
+          </h1>
+          <p className="hero-tagline">
+            <span style={{ opacity: 1, fontWeight: 500 }}>
+              Some engineers wait until they know everything before they build.
+            </span>
+            {' '}
+            <span style={{ opacity: 0.85 }}>
+              I build to find out. ML systems, full-stack products, hardware firmware —
+            </span>
+            {' '}
+            <span style={{ opacity: 0.7, fontStyle: 'italic' }}>
+              if it&apos;s new territory, I&apos;m already halfway through it.
+            </span>
+          </p>
+        </div>
+        <div style={{ flex: 1 }} />
         <div className="hero-meta">
           <span>MUMBAI, INDIA</span>
           <span>{dateString}</span>
