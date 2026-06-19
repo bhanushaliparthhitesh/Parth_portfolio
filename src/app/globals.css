@@ -275,20 +275,7 @@ a {
 }
 
 .hero-right::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120px;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    #F2A96B 0%,
-    rgba(242, 169, 107, 0.6) 40%,
-    transparent 100%
-  );
-  z-index: 2;
-  pointer-events: none;
+  display: none;
 }
 
 .hero-meta {
