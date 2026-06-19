@@ -11,19 +11,17 @@ export default function Projects() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    const marquee = document.querySelector('.projects .scroll-marquee');
-    if (marquee && marquee.parentElement) {
-      gsap.to(marquee, {
-        xPercent: 30, // -1 direction
-        ease: "none",
-        scrollTrigger: {
-          trigger: marquee.parentElement,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      });
-    }
+    // Title Animation
+    gsap.to('.projects .char', {
+      y: '0%',
+      duration: 1,
+      ease: "power4.out",
+      stagger: 0.05,
+      scrollTrigger: {
+        trigger: '.projects .section-title-wrapper',
+        start: "top 80%",
+      }
+    });
 
     gsap.utils.toArray('.projects .project-card').forEach(card => {
       gsap.from(card as Element, {
@@ -42,11 +40,19 @@ export default function Projects() {
   return (
     <section id="projects" ref={containerRef} className="projects container">
       <div className="section-title-wrapper">
-        <h2 className="section-title scroll-marquee" data-direction="-1">
-          <span className="title-en">I love building</span>
-          <span className="title-hi">· प्रोजेक्ट्स</span>
-          <span className="title-en" style={{ marginLeft: "2rem" }}>I love building</span>
-          <span className="title-hi">· प्रोजेक्ट्स</span>
+        <h2 className="section-title">
+          <span className="line title-en">
+            {Array.from("I love building").map((char, i) => (
+              <span key={`en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+            ))}
+          </span>
+          <span className="line title-hi">
+            <span className="char">·</span>
+            <span className="">&nbsp;</span>
+            {["प्रो", "जे", "क्ट्", "स"].map((char, i) => (
+              <span key={`hi-${i}`} className="char">{char}</span>
+            ))}
+          </span>
         </h2>
       </div>
 

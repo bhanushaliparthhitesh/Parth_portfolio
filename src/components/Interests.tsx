@@ -11,18 +11,16 @@ export default function Interests() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    const marquees = document.querySelectorAll('.interests .scroll-marquee');
-    marquees.forEach((marquee) => {
-      const direction = marquee.getAttribute('data-direction') === '-1' ? 1 : -1;
-      
-      gsap.to(marquee, {
-        xPercent: direction * 30,
-        ease: "none",
+    // Title Animations
+    gsap.utils.toArray('.interests .section-title-wrapper').forEach(wrapper => {
+      gsap.to((wrapper as Element).querySelectorAll('.char'), {
+        y: '0%',
+        duration: 1,
+        ease: "power4.out",
+        stagger: 0.05,
         scrollTrigger: {
-          trigger: marquee.parentElement,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
+          trigger: wrapper as Element,
+          start: "top 80%",
         }
       });
     });
@@ -33,9 +31,19 @@ export default function Interests() {
       {/* Music */}
       <div className="interest-sub">
         <div className="section-title-wrapper">
-          <h2 className="section-title scroll-marquee">
-            <span className="title-en">I live for music</span>
-            <span className="title-hi">· संगीत</span>
+          <h2 className="section-title">
+            <span className="line title-en">
+              {Array.from("I live for music").map((char, i) => (
+                <span key={`en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+              ))}
+            </span>
+            <span className="line title-hi">
+              <span className="char">·</span>
+              <span className="">&nbsp;</span>
+              {["सं", "गी", "त"].map((char, i) => (
+                <span key={`hi-${i}`} className="char">{char}</span>
+              ))}
+            </span>
           </h2>
         </div>
         <div className="h-scroll-container">
@@ -50,9 +58,19 @@ export default function Interests() {
       {/* F1 */}
       <div className="interest-sub">
         <div className="section-title-wrapper">
-          <h2 className="section-title scroll-marquee" data-direction="-1">
-            <span className="title-en">Switch is my podium</span>
-            <span className="title-hi">· रेस</span>
+          <h2 className="section-title">
+            <span className="line title-en">
+              {Array.from("Switch is my podium").map((char, i) => (
+                <span key={`en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+              ))}
+            </span>
+            <span className="line title-hi">
+              <span className="char">·</span>
+              <span className="">&nbsp;</span>
+              {["रे", "स"].map((char, i) => (
+                <span key={`hi-${i}`} className="char">{char}</span>
+              ))}
+            </span>
           </h2>
         </div>
         <div className="h-scroll-container">
@@ -66,9 +84,19 @@ export default function Interests() {
       {/* Trekking */}
       <div className="interest-sub">
         <div className="section-title-wrapper">
-          <h2 className="section-title scroll-marquee">
-            <span className="title-en">I trek</span>
-            <span className="title-hi">· पहाड़</span>
+          <h2 className="section-title">
+            <span className="line title-en">
+              {Array.from("I trek").map((char, i) => (
+                <span key={`en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+              ))}
+            </span>
+            <span className="line title-hi">
+              <span className="char">·</span>
+              <span className="">&nbsp;</span>
+              {["प", "हा", "ड़"].map((char, i) => (
+                <span key={`hi-${i}`} className="char">{char}</span>
+              ))}
+            </span>
           </h2>
         </div>
         <div className="h-scroll-container">

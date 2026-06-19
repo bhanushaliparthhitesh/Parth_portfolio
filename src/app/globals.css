@@ -59,16 +59,29 @@ a {
 
 .section-title-wrapper {
   margin-bottom: 3rem;
-  overflow: hidden;
+  /* Removed overflow: hidden because it was clipping the top matras of Hindi text */
 }
 
 .section-title {
   font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1;
+  line-height: 1.1;
   white-space: nowrap;
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.section-title span.line {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.4em 0;
+  margin: -0.4em 0;
+}
+
+.section-title .char {
+  display: inline-block;
+  transform: translateY(100%);
 }
 
 .title-en {

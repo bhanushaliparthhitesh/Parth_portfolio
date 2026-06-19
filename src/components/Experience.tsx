@@ -11,20 +11,17 @@ export default function Experience() {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    // Marquee
-    const marquee = document.querySelector('.experience .scroll-marquee');
-    if (marquee && marquee.parentElement) {
-      gsap.to(marquee, {
-        xPercent: -30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: marquee.parentElement,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1
-        }
-      });
-    }
+    // Title Animation
+    gsap.to('.experience .char', {
+      y: '0%',
+      duration: 1,
+      ease: "power4.out",
+      stagger: 0.05,
+      scrollTrigger: {
+        trigger: '.section-title-wrapper',
+        start: "top 80%",
+      }
+    });
 
     // Cards
     gsap.utils.toArray('.experience .card').forEach(card => {
@@ -44,11 +41,19 @@ export default function Experience() {
   return (
     <section ref={containerRef} className="experience container">
       <div className="section-title-wrapper">
-        <h2 className="section-title scroll-marquee">
-          <span className="title-en">I work as</span>
-          <span className="title-hi">· इंजीनियर</span>
-          <span className="title-en" style={{ marginLeft: "2rem" }}>I work as</span>
-          <span className="title-hi">· इंजीनियर</span>
+        <h2 className="section-title">
+          <span className="line title-en">
+            {Array.from("I work as").map((char, i) => (
+              <span key={`en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+            ))}
+          </span>
+          <span className="line title-hi">
+            <span className="char">·</span>
+            <span className="">&nbsp;</span>
+            {["इं", "जी", "नि", "य", "र"].map((char, i) => (
+              <span key={`hi-${i}`} className="char">{char}</span>
+            ))}
+          </span>
         </h2>
       </div>
       
