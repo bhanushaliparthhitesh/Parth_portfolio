@@ -37,6 +37,9 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: "Parth Bhanushali - Portfolio",
   description: "Portfolio of Parth Bhanushali",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
