@@ -9,22 +9,36 @@ export default function SideNav() {
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
   const isStudiesPage = pathname?.startsWith('/studies');
+  const isGridPage = pathname?.startsWith('/grid');
+  const isDarkTheme = isStudiesPage || isGridPage;
 
-  const links = isStudiesPage 
-    ? [
-        { name: 'Me', id: 'me' },
-        { name: 'Grid', id: 'projects' },
-        { name: 'List', id: 'qa' },
-      ]
-    : [
-        { name: 'Studies', id: 'studies' },
-        { name: 'Grid', id: 'projects' },
-        { name: 'List', id: 'qa' },
-      ];
+  let links = [
+    { name: 'Studies', id: 'studies' },
+    { name: 'Grid', id: 'projects' },
+    { name: 'List', id: 'qa' },
+  ];
+
+  if (isStudiesPage) {
+    links = [
+      { name: 'Me', id: 'me' },
+      { name: 'Grid', id: 'projects' },
+      { name: 'List', id: 'qa' },
+    ];
+  } else if (isGridPage) {
+    links = [
+      { name: 'Studies', id: 'studies' },
+      { name: 'Me', id: 'me' },
+      { name: 'List', id: 'qa' },
+    ];
+  }
 
   const scrollTo = (id: string) => {
     if (id === 'studies') {
       window.location.href = '/studies';
+      return;
+    }
+    if (id === 'projects') {
+      window.location.href = '/grid';
       return;
     }
     if (id === 'me') {
@@ -43,7 +57,7 @@ export default function SideNav() {
 
   return (
     <motion.nav
-      className={`${styles.sideNav} ${isStudiesPage ? styles.studiesTheme : ''}`}
+      className={`${styles.sideNav} ${isDarkTheme ? styles.studiesTheme : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ width: 72, height: 72 }}
@@ -67,7 +81,7 @@ export default function SideNav() {
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ flexShrink: 0, color: isStudiesPage ? '#1A0A00' : '#F2A96B' }}
+          style={{ flexShrink: 0, color: isDarkTheme ? '#1A0A00' : '#F2A96B' }}
         >
           {/* Inner circle */}
           <circle cx="20" cy="20" r="8" fill="currentColor" />
