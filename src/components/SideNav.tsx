@@ -11,7 +11,12 @@ export default function SideNav() {
   const isStudiesPage = pathname?.startsWith('/studies');
   const isGridPage = pathname?.startsWith('/grid');
   const isListPage = pathname?.startsWith('/list');
+  const isComingSoonPage = pathname?.startsWith('/coming-soon');
   const isDarkTheme = isStudiesPage || isGridPage || isListPage;
+
+  if (isComingSoonPage) {
+    return null;
+  }
 
   let links = [
     { name: 'Studies', id: 'studies' },
