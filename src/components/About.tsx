@@ -6,7 +6,7 @@ export default function About() {
       </p>
       <div className="about-ctas">
         <a href="#projects" className="btn btn-dark">Projects</a>
-        <a href="#" className="btn btn-outline">Resume</a>
+        <a href="/Final-resume.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">Resume</a>
       </div>
     </section>
   );
