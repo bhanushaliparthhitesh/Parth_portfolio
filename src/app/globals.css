@@ -860,7 +860,7 @@ a {
 @media (max-width: 768px) {
   .container {
     margin-left: 0;
-    padding: 0 28px;
+    padding: 0 16px;
   }
   
   .hero {
@@ -908,7 +908,8 @@ a {
   }
   
   .about {
-    padding: 4rem 0 3rem 0;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
   }
   .about-text {
     font-size: clamp(24px, 7vw, 32px);
@@ -916,7 +917,8 @@ a {
   }
   
   .experience {
-    padding: 3rem 0;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   .section-title {
     font-size: clamp(2.5rem, 12vw, 4rem);
@@ -925,7 +927,8 @@ a {
   }
   
   .projects, .interests {
-    padding: 3rem 0;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
   .music-scroll-bleed, .books-infinite-scroll {
     padding-left: 20px;
