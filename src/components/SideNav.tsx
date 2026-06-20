@@ -8,11 +8,9 @@ export default function SideNav() {
   const [isHovered, setIsHovered] = useState(false);
 
   const links = [
-    { name: 'Home', id: 'top' },
-    { name: 'About', id: 'about' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Experience', id: 'experience' },
-    { name: 'Q&A', id: 'qa' },
+    { name: 'Studies', id: 'experience' },
+    { name: 'Grid', id: 'projects' },
+    { name: 'List', id: 'qa' },
   ];
 
   const scrollTo = (id: string) => {
