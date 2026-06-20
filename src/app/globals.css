@@ -856,6 +856,10 @@ a {
   letter-spacing: 0.05em;
 }
 
+.mobile-divider {
+  display: none;
+}
+
 /* Mobile Responsiveness Overrides */
 @media (max-width: 768px) {
   .container {
@@ -910,6 +914,7 @@ a {
   .about {
     padding-top: 4rem;
     padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(26, 10, 0, 0.15);
   }
   .about-text {
     font-size: clamp(24px, 7vw, 32px);
@@ -919,16 +924,35 @@ a {
   .experience {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(26, 10, 0, 0.15);
   }
   .section-title {
     font-size: clamp(2.5rem, 12vw, 4rem);
     white-space: normal;
     padding-left: 8px; /* Prevents text clipping on the left edge */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+    gap: 8px;
+  }
+  .title-hi span:first-child,
+  .title-hi span:nth-child(2) {
+    display: none;
   }
   
+  .mobile-divider {
+    display: block;
+    border-top: 1px solid rgba(26, 10, 0, 0.15);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
   .projects, .interests {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(26, 10, 0, 0.15);
   }
   .music-scroll-bleed, .books-infinite-scroll {
     padding-left: 20px;

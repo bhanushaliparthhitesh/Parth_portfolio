@@ -139,6 +139,8 @@ export default function Experience() {
         </div>
       </div>
 
+      <div className="mobile-divider"></div>
+
       <div className="section-title-wrapper" style={{ marginTop: '8rem' }}>
         <h2 className="section-title">
           <span className="line title-en">
