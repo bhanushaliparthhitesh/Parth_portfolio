@@ -38,7 +38,13 @@ export default function SideNav() {
       }}
       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
     >
-      <div className={styles.logoRow} onClick={() => scrollTo('top')}>
+      <div className={styles.logoRow} onClick={() => {
+        if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+          setIsHovered(!isHovered);
+        } else {
+          scrollTo('top');
+        }
+      }}>
         {/* Geometric Sun SVG */}
         <svg
           width="40"
@@ -78,7 +84,12 @@ export default function SideNav() {
               <motion.div
                 key={link.id}
                 className={styles.navLink}
-                onClick={() => scrollTo(link.id)}
+                onClick={() => {
+                  scrollTo(link.id);
+                  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+                    setIsHovered(false);
+                  }
+                }}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -5 }}
