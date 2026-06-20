@@ -3,13 +3,54 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Interests() {
   const containerRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const readingScrollRef = useRef<HTMLDivElement>(null);
+  const isInteracting = useRef(false);
+
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const scroll = () => {
+      if (readingScrollRef.current) {
+        const { scrollLeft, scrollWidth } = readingScrollRef.current;
+        const halfWidth = scrollWidth / 2;
+
+        if (!isInteracting.current) {
+          readingScrollRef.current.scrollLeft += 1; // Adjust speed here
+        }
+
+        // Wrap around seamlessly
+        if (readingScrollRef.current.scrollLeft >= halfWidth) {
+          readingScrollRef.current.scrollLeft -= halfWidth;
+        } else if (readingScrollRef.current.scrollLeft <= 0 && isInteracting.current) {
+          // If the user manually scrolls backwards past 0
+          readingScrollRef.current.scrollLeft += halfWidth;
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+  const books = [
+    { title: "Karmabhoomi", subtitle: "(कर्मभूमि)", author: "Munshi Premchand", pages: "454 pages", date: "Read: Jun 2026", rating: "4.0", color: "#D29864", image: "/books/karmabhoomi.png" },
+    { title: "Too Good to Be True", subtitle: "", author: "Prajakta Koli", pages: "320 pages", date: "Read: Jun 2026", rating: "4.0", color: "#8DBCE0", image: "/books/toogoodtobetrue.jpg" },
+    { title: "The Kite Runner", subtitle: "", author: "Khaled Hosseini", pages: "340 pages", date: "Read: May 2026", rating: "5.0", color: "#E88D41", image: "/books/kiterunner.jpg" },
+    { title: "The Palace of Illusions", subtitle: "", author: "Chitra Banerjee Divakaruni", pages: "360 pages", date: "Read: Feb 2026", rating: "2.0", color: "#527E5A", image: "/books/palaceofillusions.png" },
+    { title: "Lallan Sweets", subtitle: "", author: "Srishti Chaudhary", pages: "301 pages", date: "Read: Jan 2026", rating: "4.5", color: "#87AECF", image: "/books/lallansweets.png" },
+    { title: "Norwegian Wood", subtitle: "", author: "Haruki Murakami", pages: "400 pages", date: "Read 3x", rating: "4.25", color: "#CC2729", image: "/books/norwegianwood.png" },
+    { title: "The Forest of Enchantments", subtitle: "", author: "Chitra Banerjee Divakaruni", pages: "372 pages", date: "Read 3x", rating: "5.0", color: "#3D6343", image: "/books/forestofenchantments.jpg" },
+    { title: "400 Days", subtitle: "", author: "Chetan Bhagat", pages: "344 pages", date: "Read: Nov 2025", rating: "3.0", color: "#D4B445", image: "/books/400days.png" }
+  ];
 
   const handleScroll = (dir: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -134,41 +175,68 @@ export default function Interests() {
             </span>
           </h2>
         </div>
-        <div className="h-scroll-container music-scroll-bleed">
-          {[
-            { title: "Karmabhoomi", subtitle: "(कर्मभूमि)", author: "Munshi Premchand", pages: "454 pages", date: "Read: Jun 2026", rating: "4.0", color: "#D29864", image: "/books/karmabhoomi.png" },
-            { title: "Too Good to Be True", subtitle: "", author: "Prajakta Koli", pages: "320 pages", date: "Read: Jun 2026", rating: "4.0", color: "#8DBCE0", image: "/books/toogoodtobetrue.jpg" },
-            { title: "The Kite Runner", subtitle: "", author: "Khaled Hosseini", pages: "340 pages", date: "Read: May 2026", rating: "5.0", color: "#E88D41", image: "/books/kiterunner.jpg" },
-            { title: "The Palace of Illusions", subtitle: "", author: "Chitra Banerjee Divakaruni", pages: "360 pages", date: "Read: Feb 2026", rating: "2.0", color: "#527E5A", image: "/books/palaceofillusions.png" },
-            { title: "Lallan Sweets", subtitle: "", author: "Srishti Chaudhary", pages: "301 pages", date: "Read: Jan 2026", rating: "4.5", color: "#87AECF", image: "/books/lallansweets.png" },
-            { title: "Norwegian Wood", subtitle: "", author: "Haruki Murakami", pages: "400 pages", date: "Read 3x", rating: "4.25", color: "#CC2729", image: "/books/norwegianwood.png" },
-            { title: "The Forest of Enchantments", subtitle: "", author: "Chitra Banerjee Divakaruni", pages: "372 pages", date: "Read 3x", rating: "5.0", color: "#3D6343", image: "/books/forestofenchantments.jpg" },
-            { title: "400 Days", subtitle: "", author: "Chetan Bhagat", pages: "344 pages", date: "Read: Nov 2025", rating: "3.0", color: "#D4B445", image: "/books/400days.png" }
-          ].map((book, idx) => (
-            <div key={idx} className="book-card" style={{ backgroundColor: `color-mix(in srgb, ${book.color} 15%, #FDFBF7)` }}>
-              <div className="book-cover" style={{ backgroundColor: book.color }}>
-                {book.image ? (
-                  <img src={book.image} alt={book.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
-                ) : (
-                  book.title
-                )}
-                <div className="book-rating" style={{ zIndex: 2 }}>
-                  <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
-                  </svg>
-                  {book.rating}
+        <div 
+          className="books-infinite-scroll" 
+          ref={readingScrollRef}
+          onMouseEnter={() => isInteracting.current = true}
+          onMouseLeave={() => isInteracting.current = false}
+          onTouchStart={() => isInteracting.current = true}
+          onTouchEnd={() => isInteracting.current = false}
+        >
+          <div className="books-infinite-content">
+            {books.map((book, idx) => (
+              <div key={`track1-${idx}`} className="book-card" style={{ backgroundColor: `color-mix(in srgb, ${book.color} 15%, #FDFBF7)` }}>
+                <div className="book-cover" style={{ backgroundColor: book.color }}>
+                  {book.image ? (
+                    <img src={book.image} alt={book.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
+                  ) : (
+                    book.title
+                  )}
+                  <div className="book-rating" style={{ zIndex: 2 }}>
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
+                    </svg>
+                    {book.rating}
+                  </div>
+                </div>
+                <div className="book-info">
+                  <div className="book-title">{book.title} {book.subtitle && <span style={{fontSize: "0.8em", opacity: 0.8}}>{book.subtitle}</span>}</div>
+                  <div className="book-author">{book.author}</div>
+                  <div className="book-meta">
+                    <span className="book-meta-item">{book.pages}</span>
+                    <span className="book-meta-item">{book.date}</span>
+                  </div>
                 </div>
               </div>
-              <div className="book-info">
-                <div className="book-title">{book.title} {book.subtitle && <span style={{fontSize: "0.8em", opacity: 0.8}}>{book.subtitle}</span>}</div>
-                <div className="book-author">{book.author}</div>
-                <div className="book-meta">
-                  <span className="book-meta-item">{book.pages}</span>
-                  <span className="book-meta-item">{book.date}</span>
+            ))}
+          </div>
+          <div className="books-infinite-content">
+            {books.map((book, idx) => (
+              <div key={`track2-${idx}`} className="book-card" style={{ backgroundColor: `color-mix(in srgb, ${book.color} 15%, #FDFBF7)` }}>
+                <div className="book-cover" style={{ backgroundColor: book.color }}>
+                  {book.image ? (
+                    <img src={book.image} alt={book.title} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px', position: 'absolute', top: 0, left: 0, zIndex: 1 }} />
+                  ) : (
+                    book.title
+                  )}
+                  <div className="book-rating" style={{ zIndex: 2 }}>
+                    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
+                    </svg>
+                    {book.rating}
+                  </div>
+                </div>
+                <div className="book-info">
+                  <div className="book-title">{book.title} {book.subtitle && <span style={{fontSize: "0.8em", opacity: 0.8}}>{book.subtitle}</span>}</div>
+                  <div className="book-author">{book.author}</div>
+                  <div className="book-meta">
+                    <span className="book-meta-item">{book.pages}</span>
+                    <span className="book-meta-item">{book.date}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

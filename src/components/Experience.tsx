@@ -142,15 +142,15 @@ export default function Experience() {
       <div className="section-title-wrapper" style={{ marginTop: '8rem' }}>
         <h2 className="section-title">
           <span className="line title-en">
-            {Array.from("I love shows").map((char, i) => (
-              <span key={`shows-en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
+            {Array.from("I love films").map((char, i) => (
+              <span key={`films-en-${i}`} className={char === " " ? "" : "char"}>{char === " " ? "\u00A0" : char}</span>
             ))}
           </span>
           <span className="line title-hi">
             <span className="char">·</span>
             <span className="">&nbsp;</span>
-            {["शो", "ज़"].map((char, i) => (
-              <span key={`shows-hi-${i}`} className="char">{char}</span>
+            {["फ़ि", "ल्में"].map((char, i) => (
+              <span key={`films-hi-${i}`} className="char">{char}</span>
             ))}
           </span>
         </h2>
