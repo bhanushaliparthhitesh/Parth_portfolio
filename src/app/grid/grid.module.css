@@ -8,7 +8,8 @@
 
 .contentWrapper {
   max-width: 1800px;
-  margin: 0 auto;
+  margin-left: 120px; /* Reserves vertical space for the side nav */
+  margin-right: auto;
   padding-inline: 32px;
   position: relative;
 }
@@ -29,22 +30,24 @@
 
 /* Hero Section */
 .heroSection {
-  min-height: 40vh;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  padding-top: 160px; /* Space for fixed logo and nav if needed */
+  padding-top: 180px; /* Increased to add a little more space on top */
   padding-bottom: 80px;
-  align-items: end;
+  align-items: start;
 }
 
 .heroTitle {
-  font-family: var(--font-body); /* Or use a specific condensed font if available */
-  font-size: clamp(8rem, 18vw, 14rem);
-  font-weight: 700;
-  color: #E5C158;
-  letter-spacing: -0.06em;
-  line-height: 0.85;
+  font-family: var(--font-anton), var(--font-hero), sans-serif;
+  font-size: clamp(8rem, 18vw, 16rem);
+  font-weight: 400;
+  color: #F2A96B; /* matching the yellow/gold from the image */
+  letter-spacing: -0.02em;
+  line-height: 0.8;
   margin: 0;
+  text-transform: uppercase;
+  transform: scaleY(1.2);
+  transform-origin: bottom left;
 }
 
 .heroDescription {
@@ -55,14 +58,9 @@
   padding-bottom: 24px;
 }
 
-/* Sticky Filter Navigation */
+/* Filter Navigation (No longer sticky) */
 .stickyFilterWrapper {
-  position: sticky;
-  top: 0;
-  z-index: 900;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: relative;
   padding: 24px 0;
   margin-bottom: 48px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -233,6 +231,12 @@
     grid-template-columns: 1fr;
     gap: 32px;
     align-items: start;
-    padding-top: 120px;
+    padding-top: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    margin-left: auto;
   }
 }
