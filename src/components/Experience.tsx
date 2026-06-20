@@ -156,37 +156,41 @@ export default function Experience() {
         </h2>
       </div>
 
-      <div className={showsStyles.cardsRow}>
-        {shows.map((show, index) => (
-          <motion.div
-            key={show.title}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{
-              duration: 0.5,
-              ease: "easeOut",
-              delay: index * 0.1,
-            }}
-          >
-            <ShowCard show={show} index={index} />
-          </motion.div>
-        ))}
-      </div>
+      <div className={showsStyles.mobileFlexContainer}>
+        <div className={showsStyles.cardsRow}>
+          {shows.map((show, index) => (
+            <motion.div
+              key={show.title}
+              style={{ order: index * 2 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{
+                duration: 0.5,
+                ease: "easeOut",
+                delay: index * 0.1,
+              }}
+            >
+              <ShowCard show={show} index={index} />
+            </motion.div>
+          ))}
+        </div>
 
-      <div className={showsStyles.descriptionsRow}>
-        {shows.map((show, index) => (
-          <motion.div 
-            key={`desc-${index}`}
-            className={showsStyles.descColumn}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-          >
-            <p className={showsStyles.descText} style={{ whiteSpace: 'pre-line' }}>{show.description}</p>
-          </motion.div>
-        ))}
+        <div className={showsStyles.descriptionsRow}>
+          {shows.map((show, index) => (
+            <motion.div 
+              key={`desc-${index}`}
+              className={showsStyles.descColumn}
+              style={{ order: index * 2 + 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+            >
+              <p className={showsStyles.descText} style={{ whiteSpace: 'pre-line' }}>{show.description}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       <div className={showsStyles.actionsRow}>

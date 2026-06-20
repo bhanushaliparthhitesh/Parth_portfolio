@@ -885,6 +885,7 @@ a {
     font-size: 25vw;
     line-height: 0.85;
     word-break: break-all;
+    padding-left: 8px; /* Prevents large text from getting clipped on the left edge */
   }
   .hero-name .line {
     white-space: normal;
@@ -919,6 +920,7 @@ a {
   .section-title {
     font-size: clamp(2.5rem, 12vw, 4rem);
     white-space: normal;
+    padding-left: 8px; /* Prevents text clipping on the left edge */
   }
   
   .projects, .interests {

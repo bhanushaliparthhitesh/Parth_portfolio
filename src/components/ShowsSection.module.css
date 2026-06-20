@@ -162,8 +162,15 @@
 }
 
 @media (max-width: 600px) {
-  .descriptionsRow {
-    grid-template-columns: 1fr;
+  .mobileFlexContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .cardsRow, .descriptionsRow {
+    display: contents;
+  }
+  .descColumn {
+    margin-bottom: 48px; /* Adds space before the next card starts */
   }
 }
 
