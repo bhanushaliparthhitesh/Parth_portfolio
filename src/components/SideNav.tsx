@@ -10,7 +10,8 @@ export default function SideNav() {
   const pathname = usePathname();
   const isStudiesPage = pathname?.startsWith('/studies');
   const isGridPage = pathname?.startsWith('/grid');
-  const isDarkTheme = isStudiesPage || isGridPage;
+  const isListPage = pathname?.startsWith('/list');
+  const isDarkTheme = isStudiesPage || isGridPage || isListPage;
 
   let links = [
     { name: 'Studies', id: 'studies' },
@@ -30,6 +31,12 @@ export default function SideNav() {
       { name: 'Me', id: 'me' },
       { name: 'List', id: 'qa' },
     ];
+  } else if (isListPage) {
+    links = [
+      { name: 'Studies', id: 'studies' },
+      { name: 'Grid', id: 'projects' },
+      { name: 'Me', id: 'me' },
+    ];
   }
 
   const scrollTo = (id: string) => {
@@ -39,6 +46,10 @@ export default function SideNav() {
     }
     if (id === 'projects') {
       window.location.href = '/grid';
+      return;
+    }
+    if (id === 'qa') {
+      window.location.href = '/list';
       return;
     }
     if (id === 'me') {
