@@ -164,7 +164,7 @@ a {
 /* Hero Section */
 .hero {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: #F2A96B;
   overflow: hidden;
@@ -200,7 +200,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  width: calc(100vw - 772px); /* Takes exactly the space left of hero-right */
+  width: calc(100% - 772px); /* Takes exactly the space left of hero-right */
   height: 100vh;
   padding: 32px 40px 32px 0; /* Removed extra left padding so grid controls spacing */
   display: grid;
@@ -300,11 +300,11 @@ a {
 @media (max-width: 900px) {
   .hero-left {
     grid-template-columns: 0px 1fr;
-    width: 100vw; /* Expand container so text has room and background smoothly covers image */
+    width: 100%; /* Expand container so text has room and background smoothly covers image */
     background: linear-gradient(110deg, #F5C08A 0%, rgba(242, 169, 107, 0.85) 50%, transparent 100%);
   }
   .hero-right {
-    width: 100vw; /* Let image fill screen under the text */
+    width: 100%; /* Let image fill screen under the text */
   }
   .hero-right::after {
     display: none;
@@ -715,14 +715,14 @@ a {
   gap: 4rem;
 }
 .qa-title {
-  font-family: var(--font-hero);
+  font-family: var(--font-anton);
   font-size: clamp(8rem, 25vw, 30rem);
   line-height: 0.8;
   position: absolute;
   right: -2rem;
   top: 0;
   z-index: 0;
-  opacity: 0.1;
+  opacity: 1;
   pointer-events: none;
 }
 .qa-list {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Inter, Noto_Sans_Devanagari, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Bebas_Neue, Inter, Noto_Sans_Devanagari, Playfair_Display, Plus_Jakarta_Sans, Anton } from "next/font/google";
 import SideNav from "@/components/SideNav";
 import "./globals.css";
 
@@ -7,6 +7,12 @@ const bebasNeue = Bebas_Neue({
   weight: "400", 
   subsets: ["latin"], 
   variable: "--font-hero" 
+});
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton"
 });
 
 const inter = Inter({ 
@@ -48,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bebasNeue.variable} ${inter.variable} ${plusJakarta.variable} ${notoSansDevanagari.variable} ${playfairDisplay.variable}`}>
+    <html lang="en" className={`${bebasNeue.variable} ${inter.variable} ${plusJakarta.variable} ${notoSansDevanagari.variable} ${playfairDisplay.variable} ${anton.variable}`}>
       <head>
         <link
           rel="preload"
