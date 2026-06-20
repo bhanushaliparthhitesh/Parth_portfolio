@@ -139,9 +139,9 @@ export default function Experience() {
         </div>
       </div>
 
-      <div className="mobile-divider"></div>
+      <div className="section-divider"></div>
 
-      <div className="section-title-wrapper" style={{ marginTop: '8rem' }}>
+      <div className="section-title-wrapper">
         <h2 className="section-title">
           <span className="line title-en">
             {Array.from("I love films").map((char, i) => (

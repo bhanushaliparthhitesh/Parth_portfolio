@@ -158,6 +158,7 @@ export default function Interests() {
 
 
       {/* Reading */}
+      <div className="section-divider"></div>
       <div className="interest-sub">
         <div className="section-title-wrapper">
           <h2 className="section-title">

@@ -332,6 +332,17 @@ a {
 .about {
   padding: 8rem 0 100px 0;
 }
+.section-title {
+  font-family: var(--font-playfair);
+  font-size: clamp(3rem, 15vw, 6rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 0.9;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  max-width: 1200px;
+  margin-bottom: 5rem;
+}
 .about-text {
   font-family: var(--font-jakarta);
   font-size: clamp(28px, 4.2vw, 62px);
@@ -856,8 +867,12 @@ a {
   letter-spacing: 0.05em;
 }
 
-.mobile-divider {
-  display: none;
+.section-divider {
+  display: block;
+  border-top: 1px solid rgba(26, 10, 0, 0.15);
+  margin-top: 8rem;
+  margin-bottom: 8rem;
+  width: 100%;
 }
 
 /* Mobile Responsiveness Overrides */
@@ -912,8 +927,8 @@ a {
   }
   
   .about {
-    padding-top: 4rem;
-    padding-bottom: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
     border-bottom: 1px solid rgba(26, 10, 0, 0.15);
   }
   .about-text {
@@ -922,8 +937,8 @@ a {
   }
   
   .experience {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
     border-bottom: 1px solid rgba(26, 10, 0, 0.15);
   }
   .section-title {
@@ -941,17 +956,14 @@ a {
     display: none;
   }
   
-  .mobile-divider {
-    display: block;
-    border-top: 1px solid rgba(26, 10, 0, 0.15);
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    width: 100%;
+  .section-divider {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
   }
 
   .projects, .interests {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
     border-bottom: 1px solid rgba(26, 10, 0, 0.15);
   }
   .music-scroll-bleed, .books-infinite-scroll {
@@ -966,7 +978,7 @@ a {
   }
   
   .qa {
-    padding-top: 3rem;
+    padding-top: 5rem;
   }
   .qa-title {
     font-size: 25vw;
