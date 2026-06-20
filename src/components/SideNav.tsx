@@ -1,19 +1,36 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SideNav.module.css';
 
 export default function SideNav() {
   const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
+  const isStudiesPage = pathname?.startsWith('/studies');
 
-  const links = [
-    { name: 'Studies', id: 'experience' },
-    { name: 'Grid', id: 'projects' },
-    { name: 'List', id: 'qa' },
-  ];
+  const links = isStudiesPage 
+    ? [
+        { name: 'Me', id: 'me' },
+        { name: 'Grid', id: 'projects' },
+        { name: 'List', id: 'qa' },
+      ]
+    : [
+        { name: 'Studies', id: 'studies' },
+        { name: 'Grid', id: 'projects' },
+        { name: 'List', id: 'qa' },
+      ];
 
   const scrollTo = (id: string) => {
+    if (id === 'studies') {
+      window.location.href = '/studies';
+      return;
+    }
+    if (id === 'me') {
+      window.location.href = '/';
+      return;
+    }
     if (id === 'top') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
@@ -26,7 +43,7 @@ export default function SideNav() {
 
   return (
     <motion.nav
-      className={styles.sideNav}
+      className={`${styles.sideNav} ${isStudiesPage ? styles.studiesTheme : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ width: 72, height: 72 }}
@@ -50,22 +67,22 @@ export default function SideNav() {
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          style={{ flexShrink: 0 }}
+          style={{ flexShrink: 0, color: isStudiesPage ? '#1A0A00' : '#F2A96B' }}
         >
           {/* Inner circle */}
-          <circle cx="20" cy="20" r="8" fill="#F2A96B" />
+          <circle cx="20" cy="20" r="8" fill="currentColor" />
           
           {/* Cardinal rays */}
-          <rect x="18" y="2" width="4" height="6" rx="2" fill="#F2A96B" />
-          <rect x="18" y="32" width="4" height="6" rx="2" fill="#F2A96B" />
-          <rect x="2" y="18" width="6" height="4" rx="2" fill="#F2A96B" />
-          <rect x="32" y="18" width="6" height="4" rx="2" fill="#F2A96B" />
+          <rect x="18" y="2" width="4" height="6" rx="2" fill="currentColor" />
+          <rect x="18" y="32" width="4" height="6" rx="2" fill="currentColor" />
+          <rect x="2" y="18" width="6" height="4" rx="2" fill="currentColor" />
+          <rect x="32" y="18" width="6" height="4" rx="2" fill="currentColor" />
           
           {/* Diagonal rays */}
-          <rect x="8.5" y="6.5" width="4" height="6" rx="2" transform="rotate(-45 10.5 9.5)" fill="#F2A96B" />
-          <rect x="27.5" y="27.5" width="4" height="6" rx="2" transform="rotate(-45 29.5 30.5)" fill="#F2A96B" />
-          <rect x="27.5" y="6.5" width="4" height="6" rx="2" transform="rotate(45 29.5 9.5)" fill="#F2A96B" />
-          <rect x="8.5" y="27.5" width="4" height="6" rx="2" transform="rotate(45 10.5 30.5)" fill="#F2A96B" />
+          <rect x="8.5" y="6.5" width="4" height="6" rx="2" transform="rotate(-45 10.5 9.5)" fill="currentColor" />
+          <rect x="27.5" y="27.5" width="4" height="6" rx="2" transform="rotate(-45 29.5 30.5)" fill="currentColor" />
+          <rect x="27.5" y="6.5" width="4" height="6" rx="2" transform="rotate(45 29.5 9.5)" fill="currentColor" />
+          <rect x="8.5" y="27.5" width="4" height="6" rx="2" transform="rotate(45 10.5 30.5)" fill="currentColor" />
         </svg>
       </div>
 

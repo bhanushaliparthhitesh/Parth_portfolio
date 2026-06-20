@@ -9,7 +9,20 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.studiesTheme {
+  background-color: #F2A96B;
+}
+
+.studiesTheme .navLink {
+  color: #1A0A00;
+}
+
+.studiesTheme .navLink:hover {
+  color: #1A0A00;
+  background-color: rgba(26, 10, 0, 0.1);
 }
 
 .sideNav:hover {
