@@ -24,7 +24,7 @@ export default function ShowCard({ show, index }: ShowCardProps) {
 
   return (
     <div style={cardStyle}>
-      <div className={styles.card}>
+      <div className={`${styles.card} ${!show.favorite ? styles.smallCard : ''}`}>
         <div className={styles.posterWrap}>
           {!imgError ? (
             <Image
@@ -42,7 +42,7 @@ export default function ShowCard({ show, index }: ShowCardProps) {
         {/* Favorite badge — only on first card or if explicitly favorite */}
         {show.favorite && (
           <div className={styles.favBadge}>
-            ✦ PARTH&apos;S FAVORITE
+            <span className={styles.starIcon}>✦</span> PARTH&apos;S FAVORITE
           </div>
         )}
       </div>
