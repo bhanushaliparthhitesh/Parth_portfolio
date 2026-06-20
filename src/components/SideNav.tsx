@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SideNav.module.css';
 
 export default function SideNav() {
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const isStudiesPage = pathname?.startsWith('/studies');
   const isGridPage = pathname?.startsWith('/grid');
   const isListPage = pathname?.startsWith('/list');
@@ -46,19 +47,19 @@ export default function SideNav() {
 
   const scrollTo = (id: string) => {
     if (id === 'studies') {
-      window.location.href = '/studies';
+      router.push('/coming-soon');
       return;
     }
     if (id === 'projects') {
-      window.location.href = '/grid';
+      router.push('/coming-soon');
       return;
     }
     if (id === 'qa') {
-      window.location.href = '/list';
+      router.push('/coming-soon');
       return;
     }
     if (id === 'me') {
-      window.location.href = '/';
+      router.push('/');
       return;
     }
     if (id === 'top') {

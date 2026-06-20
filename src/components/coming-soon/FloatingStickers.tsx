@@ -6,7 +6,7 @@ import styles from '@/app/coming-soon/coming.module.css';
 
 export default function FloatingStickers() {
   // Animation config for floating
-  const floatAnimation = (delay: number, duration: number, yOffset: number) => ({
+  const floatAnimation = (delay: number, duration: number, yOffset: number): any => ({
     y: [0, yOffset, 0],
     transition: {
       duration: duration,
