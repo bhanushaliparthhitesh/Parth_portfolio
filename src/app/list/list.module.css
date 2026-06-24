@@ -8,7 +8,8 @@
 
 .contentWrapper {
   max-width: 1600px;
-  margin: 0 auto;
+  margin-left: 120px; /* Reserves vertical space for the side nav */
+  margin-right: auto;
   display: grid;
   grid-template-columns: 260px 1fr;
   column-gap: 120px;
@@ -281,6 +282,10 @@
 }
 
 @media (max-width: 768px) {
+  .contentWrapper {
+    margin-left: auto;
+  }
+  
   .tableRow {
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;

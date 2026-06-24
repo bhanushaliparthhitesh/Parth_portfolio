@@ -10,6 +10,7 @@
   position: relative;
   overflow: hidden;
   font-family: var(--font-body);
+  padding-left: 120px;
 }
 
 .fixedLogo {
@@ -81,9 +82,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
+  width: 160px;
+  height: 64px;
+  border-radius: 32px;
   pointer-events: none;
   z-index: 9999;
   display: flex;
@@ -105,7 +106,7 @@
 .cursorText {
   color: var(--white);
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -119,6 +120,9 @@
   grid-template-columns: 45% 15% 40%;
   padding: 0 80px;
   position: relative;
+  margin-bottom: 20vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .projectImageWrapper {
@@ -185,7 +189,7 @@
 
 .projectTitle {
   font-family: var(--font-serif);
-  font-size: clamp(4rem, 8vw, 10rem);
+  font-size: clamp(2.5rem, 5vw, 6rem);
   font-weight: 400;
   color: var(--white);
   line-height: 0.92;
@@ -231,4 +235,10 @@
 }
 :global(.char) {
   display: inline-block;
+}
+
+@media (max-width: 768px) {
+  .studiesMain {
+    padding-left: 0;
+  }
 }

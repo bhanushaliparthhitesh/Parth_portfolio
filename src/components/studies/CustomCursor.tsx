@@ -40,7 +40,7 @@ export default function CustomCursor() {
 
   return (
     <div ref={cursorRef} className={`${styles.customCursor} ${isActive ? styles.active : ''}`}>
-      <span className={styles.cursorText}>View<br/>Project</span>
+      <span className={styles.cursorText}>View Project</span>
     </div>
   );
 }

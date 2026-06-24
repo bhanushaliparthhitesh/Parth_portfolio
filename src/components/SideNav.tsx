@@ -47,15 +47,15 @@ export default function SideNav() {
 
   const scrollTo = (id: string) => {
     if (id === 'studies') {
-      router.push('/coming-soon');
+      router.push('/studies');
       return;
     }
     if (id === 'projects') {
-      router.push('/coming-soon');
+      router.push('/grid');
       return;
     }
     if (id === 'qa') {
-      router.push('/coming-soon');
+      router.push('/list');
       return;
     }
     if (id === 'me') {

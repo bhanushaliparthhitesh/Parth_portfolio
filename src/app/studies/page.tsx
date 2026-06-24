@@ -17,37 +17,21 @@ export default function StudiesPage() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
+    document.documentElement.style.scrollSnapType = 'y mandatory';
+    document.documentElement.style.scrollBehavior = 'smooth';
 
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove(lenis.raf);
+      document.documentElement.style.scrollSnapType = '';
+      document.documentElement.style.scrollBehavior = '';
     };
   }, []);
 
   return (
     <main className={styles.studiesMain} ref={containerRef}>
-      <ScrollTracker total={projects.length} />
+      <ScrollTracker total={Math.min(projects.length, 5)} />
       <CustomCursor />
 
-      {projects.map((project, index) => (
+      {projects.slice(0, 5).map((project, index) => (
         <ProjectSection key={project.id} project={project} index={index} />
       ))}
     </main>
