@@ -1,39 +1,29 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import Lenis from 'lenis';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './studies.module.css';
-import { projects } from '@/data/projects';
-import ProjectSection from '@/components/studies/ProjectSection';
-import ScrollTracker from '@/components/studies/ScrollTracker';
-import CustomCursor from '@/components/studies/CustomCursor';
+import { blogPosts } from '@/data/blogPosts';
+import BlogHero from '@/components/studies/BlogHero';
+import FeaturedPost from '@/components/studies/FeaturedPost';
+import BlogCard from '@/components/studies/BlogCard';
+import NewsletterSection from '@/components/studies/NewsletterSection';
 
 export default function StudiesPage() {
-  const containerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    document.documentElement.style.scrollSnapType = 'y mandatory';
-    document.documentElement.style.scrollBehavior = 'smooth';
-
-    return () => {
-      document.documentElement.style.scrollSnapType = '';
-      document.documentElement.style.scrollBehavior = '';
-    };
-  }, []);
+  const featuredPost = blogPosts.find(post => post.featured) || blogPosts[0];
+  const gridPosts = blogPosts.filter(post => post.id !== featuredPost.id);
 
   return (
-    <main className={styles.studiesMain} ref={containerRef}>
-      <ScrollTracker total={Math.min(projects.length, 5)} />
-      <CustomCursor />
-
-      {projects.slice(0, 5).map((project, index) => (
-        <ProjectSection key={project.id} project={project} index={index} />
-      ))}
+    <main className={styles.studiesMain}>
+      <div className={styles.blogContainer}>
+        <BlogHero />
+        
+        <FeaturedPost post={featuredPost} />
+        
+        <NewsletterSection />
+        
+        <div className={styles.blogGrid}>
+          {gridPosts.map(post => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+      </div>
     </main>
   );
 }
