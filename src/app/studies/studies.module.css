@@ -29,12 +29,16 @@
 }
 
 .heroTitle {
-  font-family: var(--font-body);
-  font-size: clamp(3rem, 6vw, 5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1rem;
+  font-family: var(--font-anton), var(--font-hero), sans-serif;
+  font-size: clamp(3rem, 10vw, 7rem); /* Reduced from 8rem, 18vw, 16rem */
+  font-weight: 400;
+  color: #F2A96B;
   letter-spacing: -0.02em;
+  line-height: 0.9;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  transform: scaleY(1.2);
+  transform-origin: center;
 }
 
 .heroSubtitle {
