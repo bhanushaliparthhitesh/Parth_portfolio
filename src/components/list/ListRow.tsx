@@ -46,6 +46,8 @@ export default function ListRow({ item, index }: Props) {
     <a 
       ref={rowRef} 
       href={item.col4.url}
+      target="_blank"
+      rel="noopener noreferrer"
       className={styles.tableRow}
     >
       <div className={styles.colTitle}>{item.col1}</div>
