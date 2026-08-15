@@ -1,18 +1,21 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/app/studies/studies.module.css';
 import { BlogPost } from '@/data/blogPosts';
 
 export default function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <div className={styles.blogCard}>
+    <Link href={`/studies/${post.slug}`} className={styles.blogCard} style={{ display: 'flex' }}>
       <div className={styles.cardImageWrapper}>
         <Image
           src={post.coverImage}
           alt={post.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={60}
+          loading="lazy"
           style={{ objectFit: 'cover' }}
         />
       </div>
@@ -26,6 +29,6 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <h3 className={styles.cardTitle}>{post.title}</h3>
         <p className={styles.cardExcerpt}>{post.excerpt}</p>
       </div>
-    </div>
+    </Link>
   );
 }

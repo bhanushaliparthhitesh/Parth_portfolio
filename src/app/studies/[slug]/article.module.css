@@ -1,0 +1,148 @@
+.articleMain {
+  background-color: #000000;
+  color: #FFFFFF;
+  min-height: 100vh;
+  position: relative;
+}
+
+.articleContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 24px 60px;
+}
+
+@media (min-width: 1024px) {
+  .articleContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 160px 48px 80px;
+  }
+}
+
+/* Left side: Sticky Image */
+.coverWrapper {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .coverWrapper {
+    height: 80vh;
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.coverImage {
+  object-fit: cover;
+}
+
+/* Right side: Editorial Content */
+.contentWrapper {
+  max-width: 650px;
+}
+
+.articleHeader {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.articleCategory {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: #F2A96B;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.articleTitle {
+  font-family: var(--font-anton), var(--font-hero), sans-serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #FFFFFF;
+}
+
+.articleMeta {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  gap: 1rem;
+}
+
+/* Magazine Typography */
+.articleBody {
+  font-family: 'Playfair Display', 'Merriweather', Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.articleBody p {
+  margin-bottom: 1.5rem;
+}
+
+.articleBody h2 {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #F2A96B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* The massive drop cap for the first paragraph */
+.dropCap {
+  float: left;
+  font-family: var(--font-anton), var(--font-hero), serif;
+  font-size: 7rem;
+  line-height: 0.8;
+  padding-top: 0.5rem;
+  padding-right: 0.5rem;
+  margin-bottom: -0.5rem;
+  color: #F2A96B;
+  text-transform: uppercase;
+}
+
+.backButton {
+  position: fixed;
+  top: 32px;
+  left: 32px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 12px 20px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}

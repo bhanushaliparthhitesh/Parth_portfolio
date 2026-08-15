@@ -31,6 +31,9 @@ export default function ShowCard({ show, index }: ShowCardProps) {
               src={show.poster}
               alt={show.title}
               fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              quality={60}
+              loading="lazy"
               style={{ objectFit: "cover" }}
               onError={() => setImgError(true)}
             />

@@ -17,6 +17,63 @@ export type ListSectionData = {
 
 export const listData: ListSectionData[] = [
   {
+    id: 'projects',
+    title: 'Projects',
+    columns: ['Title', 'Tech Stack', 'Year', 'Link'],
+    items: [
+      { id: 'proj1', col1: 'Parth_portfolio', col2: 'TypeScript, Next.js', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Parth_portfolio' } },
+      { id: 'proj2', col1: 'webapp', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/webapp' } },
+      { id: 'proj3', col1: 'bhanushaliparth.github.io', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/bhanushaliparth.github.io' } },
+      { id: 'proj4', col1: 'vercel', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/vercel' } },
+      { id: 'proj5', col1: 'Girnariexports', col2: 'HTML, CSS, JS, GSAP', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Girnariexports' } },
+      { id: 'proj6', col1: 'Edushare', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Edushare' } },
+      { id: 'proj7', col1: 'Zooologia', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Zooologia' } },
+      { id: 'proj8', col1: 'wt', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/wt' } },
+      { id: 'proj9', col1: 'os', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/os' } },
+      { id: 'proj10', col1: 'Big4india', col2: 'HTML (Private)', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Big4india' } },
+      { id: 'proj11', col1: 'podman.io', col2: 'TypeScript', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/podman.io' } },
+      { id: 'proj12', col1: 'Bharatdashboard', col2: 'JavaScript', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Bharatdashboard' } },
+      { id: 'proj13', col1: 'Forest_land_Sdg_project', col2: 'Python', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Forest_land_Sdg_project' } },
+      { id: 'proj14', col1: 'kaizen_ai', col2: 'AI chatbot', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/kaizen_ai' } },
+      { id: 'proj15', col1: 'LoveMarkdown', col2: 'PDF/DOCX to Markdown for LLMs', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/LoveMarkdown' } },
+      { id: 'proj16', col1: 'markitdown_backend', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/markitdown_backend' } },
+      { id: 'proj17', col1: 'panel', col2: 'Python', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/panel' } },
+      { id: 'proj18', col1: 'Day_management', col2: 'TypeScript', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Day_management' } },
+      { id: 'proj19', col1: 'Voice-notes', col2: 'HTML, voice-to-text', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Voice-notes' } },
+      { id: 'proj20', col1: 'Watch_party', col2: 'TypeScript', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Watch_party' } },
+      { id: 'proj21', col1: 'Watch_party_frontend', col2: 'TypeScript', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Watch_party_frontend' } },
+      { id: 'proj22', col1: 'Watch_party_backend', col2: 'JavaScript', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Watch_party_backend' } },
+      { id: 'proj23', col1: 'python-cookiecutter', col2: 'Python', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/python-cookiecutter' } },
+      { id: 'proj24', col1: 'NLP_CIA', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/NLP_CIA' } },
+      { id: 'proj25', col1: 'NLP_CCE-2', col2: '—', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/NLP_CCE-2' } },
+      { id: 'proj26', col1: 'Animal_encyclopedia', col2: 'HTML, Python', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Animal_encyclopedia' } },
+      { id: 'proj27', col1: 'Projectile-Motion-Virtual-Lab', col2: 'JavaScript, HTML5 Canvas', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Projectile-Motion-Virtual-Lab' } },
+      { id: 'proj28', col1: 'neuroinformatics-unit.github.io', col2: 'HTML', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/neuroinformatics-unit.github.io' } },
+      { id: 'proj29', col1: 'Python_journey', col2: 'Python', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/Python_journey' } },
+      { id: 'proj30', col1: 'bhanushaliparthhitesh', col2: 'Profile repo', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/bhanushaliparthhitesh/bhanushaliparthhitesh' } }
+    ]
+  },
+  {
+    id: 'contributions',
+    title: 'Contributions',
+    columns: ['Title', 'Context', 'Year', 'Link'],
+    items: [
+      { id: 'cont1', col1: 'neuroinformatics-unit.github.io', col2: 'Neuroinformatics Unit', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/neuroinformatics-unit/neuroinformatics-unit.github.io' } },
+      { id: 'cont2', col1: 'python-cookiecutter', col2: 'Neuroinformatics Unit', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/neuroinformatics-unit/python-cookiecutter' } },
+      { id: 'cont3', col1: 'movement', col2: 'Neuroinformatics Unit — animal movement toolbox', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/neuroinformatics-unit/movement' } },
+      { id: 'cont4', col1: 'datashuttle', col2: 'Neuroinformatics Unit — project folder tool', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/neuroinformatics-unit/datashuttle' } },
+      { id: 'cont5', col1: 'blog-website', col2: 'Keploy', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/keploy/blog-website' } },
+      { id: 'cont6', col1: 'keploy', col2: 'Keploy — API/E2E testing platform', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/keploy/keploy' } },
+      { id: 'cont7', col1: 'homepage', col2: 'Kaizen-ml', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/Kaizen-ml/homepage' } },
+      { id: 'cont8', col1: 'New_frontend', col2: 'Kaizen-ml (Private)', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/Kaizen-ml/New_frontend' } },
+      { id: 'cont9', col1: 'Dashboard_ml', col2: 'Kaizen-ml', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/Kaizen-ml/Dashboard_ml' } },
+      { id: 'cont10', col1: 'Practice_rounds', col2: 'CodeBharatog (Private) — hackathon practice', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/CodeBharatog/Practice_rounds' } },
+      { id: 'cont11', col1: 'demo-repository', col2: 'CodeBharatog (Private)', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/CodeBharatog/demo-repository' } },
+      { id: 'cont12', col1: 'solana-com', col2: 'Solana Foundation — solana.com website', col3: '2026', col4: { label: 'GitHub ↗', url: 'https://github.com/solana-foundation/solana-com' } },
+      { id: 'cont13', col1: 'openfoodfacts-server', col2: 'Open Food Facts', col3: '2025', col4: { label: 'GitHub ↗', url: 'https://github.com/openfoodfacts/openfoodfacts-server' } }
+    ]
+  },
+  {
     id: 'films',
     title: 'Films',
     columns: ['Title', 'Genre', 'Year', 'Trailer'],

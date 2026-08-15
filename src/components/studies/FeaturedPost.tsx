@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/app/studies/studies.module.css';
 import { BlogPost } from '@/data/blogPosts';
@@ -8,7 +9,7 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
   if (!post) return null;
 
   return (
-    <div className={styles.featuredPost}>
+    <Link href={`/studies/${post.slug}`} className={styles.featuredPost} style={{ display: 'grid' }}>
       <div className={styles.featuredContent}>
         <span className={styles.categoryTag}>{post.category}</span>
         <h2 className={styles.featuredTitle}>{post.title}</h2>
@@ -27,6 +28,6 @@ export default function FeaturedPost({ post }: { post: BlogPost }) {
           priority
         />
       </div>
-    </div>
+    </Link>
   );
 }

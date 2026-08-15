@@ -56,6 +56,7 @@ export default function ProjectCard({ project, index }: { project: Project, inde
           width={800}
           height={600}
           className={styles.mediaImage}
+          quality={60}
           loading="lazy"
         />
       </div>

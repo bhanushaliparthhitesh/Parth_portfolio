@@ -1,10 +1,12 @@
+import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Experience from "@/components/Experience";
-import Interests from "@/components/Interests";
-import QA from "@/components/QA";
-import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+
+const About = dynamic(() => import("@/components/About"), { ssr: true });
+const Experience = dynamic(() => import("@/components/Experience"), { ssr: true });
+const Interests = dynamic(() => import("@/components/Interests"), { ssr: true });
+const QA = dynamic(() => import("@/components/QA"), { ssr: true });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: true });
 
 export default function Home() {
   return (
