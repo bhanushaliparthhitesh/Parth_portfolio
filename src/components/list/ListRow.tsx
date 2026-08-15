@@ -57,7 +57,7 @@ export default function ListRow({ item, index }: Props) {
       </div>
       <div className={styles.colYear}>{item.col3}</div>
       <div className={styles.colLink}>
-        {item.col4.label}
+        {item.col4.label.replace(/\s*↗/g, '')}
         <span className={styles.linkArrow}>↗</span>
       </div>
     </a>
