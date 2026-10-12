@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Hero from "@/components/Hero";
 import FloatingCTA from "@/components/FloatingCTA";
+import Skills from "@/components/Skills";
 
 const About = dynamic(() => import("@/components/About"), { ssr: true });
 const Experience = dynamic(() => import("@/components/Experience"), { ssr: true });
@@ -15,7 +16,9 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Experience />
+        <Experience>
+          <Skills />
+        </Experience>
         <Interests />
         <QA />
         <Footer />

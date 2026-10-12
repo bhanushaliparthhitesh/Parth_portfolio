@@ -1,13 +1,24 @@
 "use client";
 
-import styles from '@/app/grid/grid.module.css';
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import styles from '@/app/grid/grid.module.css';
 
-export default function GridHero() {
+interface Props {
+  projectCount: number;
+  categoryCount: number;
+}
+
+export default function GridHero({ projectCount, categoryCount }: Props) {
   useGSAP(() => {
     const heroChars = document.querySelectorAll(`.${styles.heroTitle} .char`);
-    gsap.to(heroChars, {
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(heroChars, { y: '0%' });
+      return;
+    }
+
+    gsap.fromTo(heroChars, { y: '100%' }, {
       y: '0%',
       duration: 1,
       ease: "power4.out",
@@ -17,20 +28,28 @@ export default function GridHero() {
   }, []);
 
   return (
-    <section className={styles.heroSection}>
+    <section className={styles.heroSection} aria-labelledby="projects-heading">
       <div>
-        <h1 className={styles.heroTitle}>
-          <span className="line" style={{ display: 'inline-block', overflow: 'hidden', padding: '0.4em 0', margin: '-0.4em 0' }}>
-            <span className="char" style={{ display: 'inline-block', transform: 'translateY(100%)' }}>G</span>
-            <span className="char" style={{ display: 'inline-block', transform: 'translateY(100%)' }}>R</span>
-            <span className="char" style={{ display: 'inline-block', transform: 'translateY(100%)' }}>I</span>
-            <span className="char" style={{ display: 'inline-block', transform: 'translateY(100%)' }}>D</span>
+        <p className={styles.heroEyebrow}>
+          {projectCount} projects <span aria-hidden="true">/</span> {categoryCount} categories
+        </p>
+        <h1 className={styles.heroTitle} id="projects-heading">
+          <span className={styles.heroLine}>
+            {Array.from("PROJECTS").map((character, index) => (
+              <span
+                className="char"
+                key={`${character}-${index}`}
+                style={{ display: 'inline-block' }}
+              >
+                {character}
+              </span>
+            ))}
           </span>
         </h1>
       </div>
-      <div>
+      <div className={styles.heroCopy}>
         <p className={styles.heroDescription}>
-          This is an exploratory digital archive. A living museum of creative experiments, interactions, motion design, and graphic explorations. There is no guided narrative here—you dictate your own journey through density and visual variety.
+          A collection of selected projects, design studies, and experiments. Open a project to explore its brief and the notes available so far.
         </p>
       </div>
     </section>

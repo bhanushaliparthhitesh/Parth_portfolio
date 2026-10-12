@@ -1,14 +1,17 @@
+export type BlogBlock =
+  | { type: 'paragraph' | 'heading'; text: string };
+
 export type BlogPost = {
   id: number;
   slug: string;
   title: string;
   excerpt: string;
   category: 'Learning' | 'Experience' | 'Weekly Update' | 'Deep Dive' | 'Insight';
-  date: string;
-  readTime: string;
-  coverImage: string;
-  featured: boolean;
-  content?: { type: 'paragraph' | 'heading'; text: string }[];
+  date?: string;
+  readTime?: string;
+  coverImage?: string;
+  featured?: boolean;
+  content?: BlogBlock[];
 };
 
 export const blogPosts: BlogPost[] = [

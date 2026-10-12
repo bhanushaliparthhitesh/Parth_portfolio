@@ -1,0 +1,117 @@
+.skills {
+  margin-bottom: 6rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr minmax(16rem, 0.8fr);
+  align-items: end;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.5rem;
+  color: rgba(26, 10, 0, 0.55);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--text-color);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.intro {
+  max-width: 25rem;
+  justify-self: end;
+  color: rgba(26, 10, 0, 0.7);
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+  list-style: none;
+}
+
+.group {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.9fr) minmax(0, 1.5fr);
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.15rem 0 1.25rem;
+  border-top: 1px solid rgba(26, 10, 0, 0.2);
+}
+
+.category {
+  color: rgba(26, 10, 0, 0.58);
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  list-style: none;
+}
+
+.skillList li {
+  color: var(--text-color);
+  font-family: var(--font-jakarta), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .groups {
+    column-gap: 2rem;
+  }
+
+  .group {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .intro {
+    justify-self: start;
+  }
+
+  .groups {
+    grid-template-columns: 1fr;
+  }
+
+  .group {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .skills {
+    margin-bottom: 4rem;
+  }
+}

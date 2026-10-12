@@ -79,7 +79,7 @@ export default function FloatingStickers() {
 
       {/* Navigation Link Stickers */}
       <motion.div animate={floatAnimation(0.5, 4, 15)} className={`${styles.sticker} ${styles.navStickerGrid}`}>
-        <Link href="/grid" className={styles.navSticker}>Grid Archive</Link>
+        <Link href="/grid" className={styles.navSticker}>Projects</Link>
       </motion.div>
 
       <motion.div animate={floatAnimation(1.2, 5.5, -15)} className={`${styles.sticker} ${styles.navStickerList}`}>

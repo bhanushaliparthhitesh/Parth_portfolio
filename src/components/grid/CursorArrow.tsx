@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { useReducedMotion } from 'framer-motion';
 import styles from '@/app/grid/grid.module.css';
 
 export default function CursorArrow() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reduceMotion) return;
     if (!cursorRef.current) return;
 
     const xTo = gsap.quickTo(cursorRef.current, 'left', { duration: 0.2, ease: 'power3' });
@@ -36,7 +39,9 @@ export default function CursorArrow() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, []);
+  }, [reduceMotion]);
+
+  if (reduceMotion) return null;
 
   return (
     <div ref={cursorRef} className={`${styles.customCursorArrow} ${isActive ? styles.active : ''}`}>

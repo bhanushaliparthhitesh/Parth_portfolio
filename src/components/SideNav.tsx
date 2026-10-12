@@ -1,12 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './SideNav.module.css';
 
 export default function SideNav() {
   const [isHovered, setIsHovered] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
+  const pointerInsideRef = useRef(false);
+  const introCancelledRef = useRef(false);
+  const introTimerRef = useRef<number | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   const isStudiesPage = pathname?.startsWith('/studies');
@@ -14,6 +18,54 @@ export default function SideNav() {
   const isListPage = pathname?.startsWith('/list');
   const isComingSoonPage = pathname?.startsWith('/coming-soon');
   const isDarkTheme = isStudiesPage || isGridPage || isListPage;
+
+  const cancelIntro = () => {
+    introCancelledRef.current = true;
+    if (introTimerRef.current !== null) {
+      window.clearTimeout(introTimerRef.current);
+      introTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    if (nav.matches(':hover')) {
+      pointerInsideRef.current = true;
+      introCancelledRef.current = true;
+      setIsHovered(true);
+      return;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    introTimerRef.current = window.setTimeout(() => {
+      introTimerRef.current = null;
+      if (introCancelledRef.current || pointerInsideRef.current || nav.matches(':hover')) {
+        introCancelledRef.current = true;
+        return;
+      }
+
+      setIsHovered(true);
+      introTimerRef.current = window.setTimeout(() => {
+        introTimerRef.current = null;
+        if (introCancelledRef.current) return;
+        if (pointerInsideRef.current || nav.matches(':hover')) {
+          introCancelledRef.current = true;
+          return;
+        }
+        setIsHovered(false);
+      }, 1000);
+    }, 450);
+
+    return () => {
+      if (introTimerRef.current !== null) {
+        window.clearTimeout(introTimerRef.current);
+        introTimerRef.current = null;
+      }
+    };
+  }, []);
 
   if (isComingSoonPage) {
     return null;
@@ -28,7 +80,7 @@ export default function SideNav() {
   if (isStudiesPage) {
     links = [
       { name: 'Me', id: 'me' },
-      { name: 'Grid', id: 'projects' },
+      { name: 'Projects', id: 'projects' },
       { name: 'List', id: 'qa' },
     ];
   } else if (isGridPage) {
@@ -40,7 +92,7 @@ export default function SideNav() {
   } else if (isListPage) {
     links = [
       { name: 'Studies', id: 'studies' },
-      { name: 'Grid', id: 'projects' },
+      { name: 'Projects', id: 'projects' },
       { name: 'Me', id: 'me' },
     ];
   }
@@ -74,17 +126,28 @@ export default function SideNav() {
 
   return (
     <motion.nav
+      ref={navRef}
       className={`${styles.sideNav} ${isDarkTheme ? styles.studiesTheme : ''}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => {
+        pointerInsideRef.current = true;
+        cancelIntro();
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        pointerInsideRef.current = false;
+        setIsHovered(false);
+      }}
+      onPointerDown={cancelIntro}
+      onFocusCapture={cancelIntro}
       initial={{ width: 72, height: 72 }}
-      animate={{ 
-        width: isHovered ? 150 : 72, 
-        height: isHovered ? 'auto' : 72 
+      animate={{
+        width: isHovered ? 150 : 72,
+        height: isHovered ? 'auto' : 72
       }}
       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
     >
       <div className={styles.logoRow} onClick={() => {
+        cancelIntro();
         if (typeof window !== 'undefined' && window.innerWidth <= 768) {
           setIsHovered(!isHovered);
         } else {
@@ -102,13 +165,13 @@ export default function SideNav() {
         >
           {/* Inner circle */}
           <circle cx="20" cy="20" r="8" fill="currentColor" />
-          
+
           {/* Cardinal rays */}
           <rect x="18" y="2" width="4" height="6" rx="2" fill="currentColor" />
           <rect x="18" y="32" width="4" height="6" rx="2" fill="currentColor" />
           <rect x="2" y="18" width="6" height="4" rx="2" fill="currentColor" />
           <rect x="32" y="18" width="6" height="4" rx="2" fill="currentColor" />
-          
+
           {/* Diagonal rays */}
           <rect x="8.5" y="6.5" width="4" height="6" rx="2" transform="rotate(-45 10.5 9.5)" fill="currentColor" />
           <rect x="27.5" y="27.5" width="4" height="6" rx="2" transform="rotate(-45 29.5 30.5)" fill="currentColor" />
@@ -131,6 +194,7 @@ export default function SideNav() {
                 key={link.id}
                 className={styles.navLink}
                 onClick={() => {
+                  cancelIntro();
                   scrollTo(link.id);
                   if (typeof window !== 'undefined' && window.innerWidth <= 768) {
                     setIsHovered(false);

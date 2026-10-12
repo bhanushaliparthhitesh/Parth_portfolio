@@ -1,12 +1,34 @@
+export type ProjectCategory = 'EXPERIENCE' | 'INTERACTION' | 'GRAPHIC' | 'MOTION' | 'DOODLE';
+
+export type ProjectImage = {
+  src: string;
+  alt: string;
+};
+
+export type ProjectDetails = {
+  motivation?: string;
+  approach?: string;
+  technologies?: string[];
+  keyFeatures?: string[];
+  challenges?: string;
+  learnings?: string;
+  outcomes?: string;
+  repositoryUrl?: string;
+  liveDemoUrl?: string;
+  images?: ProjectImage[];
+};
+
 export type Project = {
   id: number;
   label: string;
   title: string;
-  image: string;
+  image?: string;
   year: string;
-  category: string;
+  category: ProjectCategory;
   description?: string;
   date?: string;
+  classification?: 'Concept' | 'Weekend experiment' | 'Study';
+  details?: ProjectDetails;
 };
 
 export const projects: Project[] = [
@@ -58,23 +80,23 @@ export const projects: Project[] = [
     year: "2023",
     category: "INTERACTION",
     date: "May 2023",
-    description: "A conceptual productivity tool interface that uses spatial organization rather than lists."
+    description: "A conceptual productivity tool interface that uses spatial organization rather than lists.",
+    classification: "Concept"
   },
   {
     id: 6,
     label: "EXPERIMENTAL 01",
     title: "Fluid Dynamics UI",
-    image: "/blog/cover-creative-coding.jpg",
     year: "2025",
     category: "DOODLE",
     date: "Feb 2025",
-    description: "A quick weekend experiment seeing if nav bars can behave like water."
+    description: "A quick weekend experiment seeing if nav bars can behave like water.",
+    classification: "Weekend experiment"
   },
   {
     id: 7,
     label: "BRAND REFRESH",
     title: "Minimalist Identity",
-    image: "/blog/cover-typography.jpg",
     year: "2022",
     category: "GRAPHIC",
     date: "Jan 2022",
@@ -84,7 +106,6 @@ export const projects: Project[] = [
     id: 8,
     label: "KINETIC",
     title: "Scroll-triggered typography",
-    image: "/blog/cover-figma-code.jpg",
     year: "2024",
     category: "MOTION",
     date: "Jul 2024",
@@ -94,7 +115,6 @@ export const projects: Project[] = [
     id: 9,
     label: "ARCHIVE 404",
     title: "Lost in the museum",
-    image: "/shows/hailmary-poster.jpg",
     year: "2023",
     category: "EXPERIENCE",
     date: "Mar 2023",
@@ -104,10 +124,14 @@ export const projects: Project[] = [
     id: 10,
     label: "SKETCH",
     title: "Daily UI 042",
-    image: "/shows/from-poster.jpg",
     year: "2021",
     category: "DOODLE",
     date: "Oct 2021",
-    description: "Just a quick sketch of a weather app interface."
+    description: "Just a quick sketch of a weather app interface.",
+    classification: "Study"
   }
 ];
+
+export const projectCategories = Array.from(
+  new Set(projects.map((project) => project.category))
+);

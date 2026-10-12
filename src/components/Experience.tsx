@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import ShowCard, { Show } from "./ShowCard";
 import showsStyles from "./ShowsSection.module.css";
@@ -45,7 +46,7 @@ const shows: Show[] = [
   },
 ];
 
-export default function Experience() {
+export default function Experience({ children }: { children: ReactNode }) {
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -140,6 +141,8 @@ export default function Experience() {
       </div>
 
       <div className="section-divider"></div>
+
+      {children}
 
       <div className="section-title-wrapper">
         <h2 className="section-title">

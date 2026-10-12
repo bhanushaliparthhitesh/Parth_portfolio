@@ -2,28 +2,36 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { useReducedMotion } from 'framer-motion';
 import styles from '@/app/grid/grid.module.css';
-import { Project } from '@/data/projects';
+import type { Project } from '@/data/projects';
 
-export default function ProjectCard({ project, index }: { project: Project, index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
+interface Props {
+  project: Project;
+  index: number;
+  onOpenProject: (project: Project, trigger: HTMLButtonElement) => void;
+}
+
+export default function ProjectCard({ project, index, onOpenProject }: Props) {
+  const cardRef = useRef<HTMLButtonElement>(null);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    const card = cardRef.current;
+    if (!card || reduceMotion || !('IntersectionObserver' in window)) return;
+
+    let timeoutId: number | undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && cardRef.current) {
-            // Calculate stagger delay based on index (waterfall effect)
-            // Use modulo so the delay doesn't get infinitely long for lower items
+          if (entry.isIntersecting) {
             const delay = (index % 10) * 60;
-            
-            setTimeout(() => {
-              if (cardRef.current) {
-                cardRef.current.style.opacity = '1';
-                cardRef.current.style.transform = 'translateY(0) scale(1)';
-              }
+
+            timeoutId = window.setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0) scale(1)';
             }, delay);
-            
+
             observer.unobserve(entry.target);
           }
         });
@@ -31,45 +39,59 @@ export default function ProjectCard({ project, index }: { project: Project, inde
       { threshold: 0.15 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(40px) scale(0.98)';
+    observer.observe(card);
 
-    return () => observer.disconnect();
-  }, [index]);
+    return () => {
+      observer.disconnect();
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      card.style.opacity = '1';
+      card.style.transform = 'none';
+    };
+  }, [index, reduceMotion]);
 
   return (
-    <div 
-      ref={cardRef} 
+    <button
+      ref={cardRef}
+      type="button"
       className={styles.projectCard}
-      style={{
-        opacity: 0,
-        transform: 'translateY(40px) scale(0.98)',
-        transition: 'opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)'
-      }}
+      onClick={(event) => onOpenProject(project, event.currentTarget)}
+      aria-label={`Open project details for ${project.label}`}
     >
-      <div className={styles.mediaContainer}>
-        {/* If the project had a video, we would render a <video autoPlay muted loop playsInline> here instead */}
-        <Image 
-          src={project.image}
-          alt={project.title}
-          width={800}
-          height={600}
-          className={styles.mediaImage}
-          quality={60}
-          loading="lazy"
-        />
-      </div>
-      <div className={styles.metadataContainer}>
-        <div className={styles.metaHeader}>
-          <h3 className={styles.projectTitle}>{project.title}</h3>
-          <div className={styles.projectTag}>{project.category}</div>
-        </div>
-        <div className={styles.projectDate}>{project.date || project.year}</div>
-        {project.description && (
-          <p className={styles.projectDescription}>{project.description}</p>
+      <span className={styles.mediaContainer} aria-hidden="true">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className={styles.mediaImage}
+            quality={60}
+            loading="lazy"
+          />
+        ) : (
+          <span className={styles.textPreview}>
+            <span className={styles.previewCategory}>{project.category}</span>
+            <span className={styles.previewLabel}>{project.label}</span>
+          </span>
         )}
-      </div>
-    </div>
+      </span>
+      <span className={styles.metadataContainer}>
+        <span className={styles.metaHeader}>
+          <span className={styles.projectTitle}>{project.label}</span>
+          <span className={styles.projectTag}>{project.category}</span>
+        </span>
+        <span className={styles.projectDescriptor}>{project.title}</span>
+        <span className={styles.projectDate}>
+          <time dateTime={project.year}>{project.date || project.year}</time>
+          {project.classification && <span>{project.classification}</span>}
+        </span>
+        {project.description && <span className={styles.projectDescription}>{project.description}</span>}
+        <span className={styles.detailsLink}>
+          View project details <span aria-hidden="true">↗</span>
+        </span>
+      </span>
+    </button>
   );
 }
