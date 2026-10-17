@@ -63,7 +63,8 @@ function repositoryFor(name: string) {
   return verifiedRepositories[name.trim().toLowerCase()];
 }
 
-function yearFrom(value: string) {
+function yearFrom(value?: string) {
+  if (!value) return undefined;
   const match = value.match(/\b(19|20)\d{2}\b/);
   return match ? Number(match[0]) : undefined;
 }
@@ -116,8 +117,8 @@ for (const project of projects) {
     dateLabel: project.date || project.year,
     secondaryInfo: project.title,
     secondaryLabel: 'Project focus',
-    description: project.description,
-    status: project.classification,
+    description: project.shortDescription,
+    status: project.status,
     technologies: project.details?.technologies,
     repositoryUrl: project.details?.repositoryUrl,
     liveDemoUrl: project.details?.liveDemoUrl,

@@ -123,8 +123,10 @@ export default function ProjectDetailOverlay({ project, returnFocusTo, onClose }
           <div className={styles.dialogKicker}>
             <span>{project.category}</span>
             <span aria-hidden="true">/</span>
-            <time dateTime={project.year}>{project.date || project.year}</time>
-            {project.classification && <span className={styles.classification}>{project.classification}</span>}
+            {(project.date || project.year) && (
+              <time dateTime={project.year}>{project.date || project.year}</time>
+            )}
+            {project.status && <span className={styles.classification}>{project.status}</span>}
           </div>
           <button
             ref={closeButtonRef}
@@ -147,7 +149,7 @@ export default function ProjectDetailOverlay({ project, returnFocusTo, onClose }
             <div className={styles.dialogImage}>
               <Image
                 src={project.image}
-                alt=""
+                alt={project.imageAlt || `${project.label} project preview`}
                 fill
                 sizes="(max-width: 768px) 100vw, 900px"
                 className={styles.dialogImageAsset}
@@ -159,7 +161,9 @@ export default function ProjectDetailOverlay({ project, returnFocusTo, onClose }
           {project.description && (
             <section className={styles.detailSection} aria-labelledby={overviewId}>
               <h3 id={overviewId}>Overview</h3>
-              <p>{project.description}</p>
+              {project.description.split(/\n\s*\n/).map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </section>
           )}
 
@@ -184,6 +188,15 @@ export default function ProjectDetailOverlay({ project, returnFocusTo, onClose }
               <h3>Technologies</h3>
               <ul className={styles.technologyList}>
                 {details.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+              </ul>
+            </section>
+          )}
+
+          {details?.plannedArchitecture && details.plannedArchitecture.length > 0 && (
+            <section className={styles.detailSection}>
+              <h3>Planned architecture</h3>
+              <ul className={styles.technologyList}>
+                {details.plannedArchitecture.map((technology) => <li key={technology}>{technology}</li>)}
               </ul>
             </section>
           )}

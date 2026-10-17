@@ -83,11 +83,15 @@ export default function ProjectCard({ project, index, onOpenProject }: Props) {
           <span className={styles.projectTag}>{project.category}</span>
         </span>
         <span className={styles.projectDescriptor}>{project.title}</span>
-        <span className={styles.projectDate}>
-          <time dateTime={project.year}>{project.date || project.year}</time>
-          {project.classification && <span>{project.classification}</span>}
-        </span>
-        {project.description && <span className={styles.projectDescription}>{project.description}</span>}
+        {(project.date || project.year || project.status) && (
+          <span className={styles.projectDate}>
+            {(project.date || project.year) && (
+              <time dateTime={project.year}>{project.date || project.year}</time>
+            )}
+            {project.status && <span>{project.status}</span>}
+          </span>
+        )}
+        {project.shortDescription && <span className={styles.projectDescription}>{project.shortDescription}</span>}
         <span className={styles.detailsLink}>
           View project details <span aria-hidden="true">↗</span>
         </span>

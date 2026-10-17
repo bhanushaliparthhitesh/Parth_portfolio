@@ -73,7 +73,7 @@ export default function SideNav() {
 
   let links = [
     { name: 'Studies', id: 'studies' },
-    { name: 'Grid', id: 'projects' },
+    { name: 'Projects', id: 'projects' },
     { name: 'List', id: 'qa' },
   ];
 

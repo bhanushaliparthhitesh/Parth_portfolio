@@ -33,7 +33,7 @@
 
 .heroTitle {
   margin: 0;
-  color: #F2A96B;
+  color: #E5C158;
   font-family: var(--font-anton), var(--font-hero), sans-serif;
   font-size: clamp(5rem, 14vw, 12rem);
   font-weight: 400;
